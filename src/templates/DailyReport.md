@@ -2,17 +2,17 @@
 [date]
 
 ## TODO List
-#### Practice bAss for your band!!
+__Practice bAss for your band!!__
 - [ ] Basic scale
 - [ ]  Groove is important
 - [ ] Controling and Endurance
 - [ ] Why not play a song  
 
-#### Practice Keyboard to maintain your finger skill.
+__Practice Keyboard to maintain your finger skill.__
 - [ ] Hanon - Virtuoso Pianist in 60 Exercises
 - [ ] Play something for fun!!  
 
-#### Maintain your hearing, don't be DEAF!!
+__Maintain your hearing, don't be DEAF!!__
 - [ ] Interval
 - [ ] Chord
 - [ ] Rhythm
@@ -20,7 +20,7 @@
 - [ ] Absolute pitch
 - [ ] Note singing  
 
-#### Just listen to some music you like.
+__Just listen to some music you like.__
 - [x] Have fun  
 
 ## What did you do, Any midi or recording?
