@@ -1,5 +1,5 @@
 # Things todo Today!!
-[dat**e]
+[date]
 
 ## TODO List
 Practice bAss for your band!!  
