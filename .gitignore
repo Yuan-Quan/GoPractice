@@ -5,6 +5,7 @@
  
 # Vim backup
 *.md~ 
+*.un~
 
 # User-specific files
 *.rsuser
