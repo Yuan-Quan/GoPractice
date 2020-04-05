@@ -1,24 +1,27 @@
 # Things todo Today!!
-[dat**e]
+[date]
 
 ## TODO List
-Practice bAss for your band!!  
-	- [ ] Basic scale
-	- [ ]  Groove is important
-	- [ ] Controling and Endurance 
-	- [ ] Why not play a song
-Practice Keyboard to maintain your finger skill.  
-	- [ ] Hanon - Virtuoso Pianist in 60 Exercises
-	- [ ] Play something for fun!!
-Maintain your hearing, don't be DEAF!!  
-	- [ ] Interval
-	- [ ] Chord
-	- [ ] Rhythm
-	- [ ] Sight reading
-	- [ ] Absolute pitch
-	- [ ] Note singing
-Just listen to some music you like.  
-	- [ ] Have fun
+__Practice bAss for your band!!__
+- [ ] Basic scale
+- [ ]  Groove is important
+- [ ] Controling and Endurance
+- [ ] Why not play a song  
+
+__Practice Keyboard to maintain your finger skill.__
+- [ ] Hanon - Virtuoso Pianist in 60 Exercises
+- [ ] Play something for fun!!  
+
+__Maintain your hearing, don't be DEAF!!__
+- [ ] Interval
+- [ ] Chord
+- [ ] Rhythm
+- [ ] Sight reading
+- [ ] Absolute pitch
+- [ ] Note singing  
+
+__Just listen to some music you like.__
+- [x] Have fun  
 
 ## What did you do, Any midi or recording?
 
