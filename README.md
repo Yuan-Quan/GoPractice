@@ -1,5 +1,5 @@
 # Just practice!!
-Practice _____40 hours__ a day and you will get a girlfriend.
+Practice __40 hours__ a day and you will get a girlfriend.
 ### What I need to do?
 Things todo within 40 hours:  
 * Practice bAss for your band!!
