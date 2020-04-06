@@ -4,7 +4,7 @@
 ## TODO List
 __Practice bAss for your band!!__
 - [ ] Basic scale
-- [ ]  Groove is important
+- [ ] Groove is important
 - [ ] Controling and Endurance
 - [ ] Why not play a song  
 

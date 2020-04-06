@@ -23,7 +23,7 @@ Things todo within 40 hours:
 #### April 5, 2020 to April 11, 2020
 First Header | Second Header
 ------------ | -------------
-__日曜日__ | 
+__日曜日__ | __[Done](/record/Apr4.2020.md)__
 __月曜日__ | 
 __火曜日__ | 
 __水曜日__ | 
