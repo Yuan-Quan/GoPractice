@@ -13,12 +13,12 @@ __Practice Keyboard to maintain your finger skill.__
 - [x] Play something for fun!!  
 
 __Maintain your hearing, don't be DEAF!!__
-- [ ] Interval
-- [ ] Chord
-- [ ] Rhythm
-- [ ] Sight reading
-- [ ] Absolute pitch
-- [ ] Note singing  
+- [x] Interval
+- [x] Chord
+- [x] Rhythm
+- [x] Sight reading
+- [x] Absolute pitch
+- [x] Note singing  
 
 __Just listen to some music you like.__
 - [x] Have fun  
