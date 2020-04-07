@@ -1,4 +1,4 @@
-# Things todo Today!!
+# Apr6.2020!
 [date]
 
 ## TODO List
@@ -33,3 +33,4 @@ OneOkRock-Re:make bass cover
   
 
 ## Any thing special? Leave it here.
+Nope.
