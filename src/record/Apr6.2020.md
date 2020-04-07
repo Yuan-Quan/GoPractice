@@ -25,7 +25,8 @@ __Just listen to some music you like.__
 
 ## What did you do, Any midi or recording?
 鬥志!半音階NO.1  
-主樂句70BPM(126)  
+主樂句70BPM(126)
+__[->AUDIO<-](../audio/Apr6.2020/001.wav)__
   
 OneOkRock-Re:make bass cover  
 
