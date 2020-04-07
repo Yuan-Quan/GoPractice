@@ -24,11 +24,12 @@ __Just listen to some music you like.__
 - [x] Have fun  
 
 ## What did you do, Any midi or recording?
-鬥志!半音階NO.1
-主樂句70BPM(126)
+鬥志!半音階NO.1  
+主樂句70BPM(126)  
+  
+OneOkRock-Re:make bass cover  
 
-OneOkRock-Re:make bass cover
-
-
+![001](../images/Apr6.2020/001.png)  
+  
 
 ## Any thing special? Leave it here.
