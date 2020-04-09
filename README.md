@@ -26,7 +26,7 @@ First Header | Second Header
 __日曜日__ | __[Done](/src/record/Apr5.2020.md)__
 __月曜日__ | __[Done](/src/record/Apr6.2020.md)__
 __火曜日__ | __[Done](/src/record/Apr7.2020.md)__
-__水曜日__ | 
+__水曜日__ | __PauseForRehearse__
 __木曜日__ | 
 __金曜日__ | 
 __土曜日__ |      
