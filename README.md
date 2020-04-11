@@ -29,4 +29,4 @@ __火曜日__ | __[Done](/src/record/Apr7.2020.md)__
 __水曜日__ | __PauseForRehearsal__
 __木曜日__ | __[Done](/src/record/Apr7.2020.md)__
 __金曜日__ | __[Done](/src/record/Apr7.2020.md)__
-__土曜日__ |      
+__土曜日__ | __PausedForExam__
