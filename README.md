@@ -25,8 +25,19 @@ First Header | Second Header
 ------------ | -------------
 __日曜日__ | __[Done](/src/record/Apr5.2020.md)__
 __月曜日__ | __[Done](/src/record/Apr6.2020.md)__
-__火曜日__ | __[Done](/src/record/Apr7.2020.md)__
+__火曜日__ | __Done__
 __水曜日__ | __PausedForRehearsal__
-__木曜日__ | __[Done](/src/record/Apr7.2020.md)__
-__金曜日__ | __[Done](/src/record/Apr7.2020.md)__
+__木曜日__ | __[Done](/src/record/Apr9.2020.md)__
+__金曜日__ | __[Done](/src/record/Apr10.2020.md)__
 __土曜日__ | __PausedForExam__
+  
+#### April 12, 2020 to April 19, 2020
+First Header | Second Header
+------------ | -------------
+__日曜日__ | __[Exam,ButStillPracticed](/src/record/Apr12.2020.md)__
+__月曜日__ | 
+__火曜日__ | 
+__水曜日__ | 
+__木曜日__ | 
+__金曜日__ | 
+__土曜日__ | 
