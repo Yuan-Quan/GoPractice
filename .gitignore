@@ -3,9 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
  
-# Vim backup
+# Vim files
 *.md~ 
 *.un~
+*.swp
 
 # User-specific files
 *.rsuser
