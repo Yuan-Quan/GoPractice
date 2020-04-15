@@ -45,9 +45,9 @@ __土曜日__ | __PausedForExam__
 First Header | Second Header
 ------------ | -------------
 __日曜日__ | __[Exam,ButStillPracticed](/src/record/Apr12.2020.md)__
-__月曜日__ |
-__火曜日__ |
-__水曜日__ |
+__月曜日__ | __[Done](/src/record/Apr13.2020.md)__
+__火曜日__ | __[Done](/src/record/Apr14.2020.md)__
+__水曜日__ | __[Done](/src/record/Apr15.2020.md)__
 __木曜日__ |
 __金曜日__ |
 __土曜日__ |
