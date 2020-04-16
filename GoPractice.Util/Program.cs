@@ -55,7 +55,7 @@ namespace GoPractice.Util
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("[1]SKIP");
                 Console.ForegroundColor = preForegroundColor;
-                Console.Write(" break the new opreation.");
+                Console.Write(" break this opreation.");
                 Console.WriteLine();
 
                 preForegroundColor = Console.ForegroundColor;
