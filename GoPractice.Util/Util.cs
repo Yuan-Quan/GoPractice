@@ -5,7 +5,7 @@ using System.Text;
 
 namespace GoPractice.Util
 {
-    public class Util
+    public static class Util
     {
         /// <summary>
         /// Reading and Echoing the File
@@ -37,48 +37,22 @@ namespace GoPractice.Util
 
         private static string MonthToString(int month)
         {
-            switch (month)
+            return month switch
             {
-                case 1:
-                    return "Jan.";
-                    break;
-                case 2:
-                    return "Feb.";
-                    break;
-                case 3:
-                    return "Mar.";
-                    break;
-                case 4:
-                    return "Apr.";
-                    break;
-                case 5:
-                    return "May";
-                    break;
-                case 6:
-                    return "June";
-                    break;
-                case 7:
-                    return "July";
-                    break;
-                case 8:
-                    return "Aug.";
-                    break;
-                case 9:
-                    return "Sept.";
-                    break;
-                case 10:
-                    return "Oct.";
-                    break;
-                case 11:
-                    return "Nov.";
-                    break;
-                case 12:
-                    return "Dec.";
-                    break;
-                default:
-                    return "err";
-                    break;
-            }
+                1 => "Jan.",
+                2 => "Feb.",
+                3 => "Mar.",
+                4 => "Apr.",
+                5 => "May",
+                6 => "June",
+                7 => "July",
+                8 => "Aug.",
+                9 => "Sept.",
+                10 => "Oct.",
+                11 => "Nov.",
+                12 => "Dec.",
+                _ => "err",
+            };
         } 
     }
 }
