@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Configuration;
-using System.Collections.Generic;
 using System.IO;
+using System.Configuration;
 using CommandDotNet;
-using GoPractice.Util;
 
 namespace GoPractice.Util
 {
@@ -23,6 +21,7 @@ namespace GoPractice.Util
     {
         //the path to the root of GoPracice
         readonly string path = "/mnt/c/Users/yq/source/repos/GoPractice";
+        //readonly string path = ;
 
         //to store the console color when color changes
         ConsoleColor preForegroundColor;
