@@ -8,7 +8,9 @@ namespace GoPractice.Util
 {
     public static class Util
     {
-
+        /// <summary>
+        /// Print current settings
+        /// </summary>
         static void ReadAllSettings()
         {
             try
@@ -21,6 +23,7 @@ namespace GoPractice.Util
                 }
                 else
                 {
+                    Console.WriteLine("Current app settings: ");
                     foreach (var key in appSettings.AllKeys)
                     {
                         Console.WriteLine("Key: {0} Value: {1}", key, appSettings[key]);
@@ -33,20 +36,31 @@ namespace GoPractice.Util
             }
         }
 
-        static void ReadSetting(string key)
+        /// <summary>
+        /// Read a setting by key
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <returns>value of appSettings[key]</returns>
+        static string ReadSetting(string key)
         {
             try
             {
                 var appSettings = ConfigurationManager.AppSettings;
-                string result = appSettings[key] ?? "Not Found";
-                Console.WriteLine(result);
+                string result = appSettings[key] ?? null;
+                return result;
             }
             catch (ConfigurationErrorsException)
             {
                 Console.WriteLine("Error reading app settings");
+                return null;
             }
         }
 
+        /// <summary>
+        /// Add a setting in appsettings
+        /// </summary>
+        /// <param name="key">key</param>
+        /// <param name="value">value</param>
         static void AddUpdateAppSettings(string key, string value)
         {
             try
