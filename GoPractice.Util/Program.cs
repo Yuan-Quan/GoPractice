@@ -9,7 +9,6 @@ namespace GoPracticeCli
 {
     class Program
     {
-
         static void Startup()
         {
             //MyUtil.ReadAllSettings();
@@ -35,7 +34,6 @@ namespace GoPracticeCli
 
         //format of date time
         const string dataFmt = "{0,-30}{1}";
-        const string timeFmt = "{0,-30}{1:yyyy-MM-dd HH:mm}";
 
         [Command(Name = "new",
         Usage = "new [date]",
@@ -71,7 +69,7 @@ namespace GoPracticeCli
                 Console.WriteLine("\n");
                 preForegroundColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("[1]SKIP");
+                Console.Write("[1]SKIP:");
                 Console.ForegroundColor = preForegroundColor;
                 Console.Write(" break this opreation.");
                 Console.WriteLine();
@@ -209,8 +207,10 @@ namespace GoPracticeCli
                     Console.WriteLine("Usage: config [opration] [key] [value]\nexample: config set path ~/GoPractice");
                     break;
             }
-            void ConfigRemove(string k, string v)
+
+            static void ConfigRemove(string k, string v)
             {
+                Console.WriteLine("Too lazy to write it. Just goto App.config and delete it.");
                 throw new NotImplementedException();
             }
 
@@ -234,7 +234,7 @@ namespace GoPracticeCli
                 Console.ForegroundColor = preForegroundColor;
             }
 
-            void ConfigView(string k)
+            static void ConfigView(string k)
             {
                 if (k == null)
                 {
@@ -246,12 +246,47 @@ namespace GoPracticeCli
                     }
 
                     Console.WriteLine();
-                    Console.WriteLine(" Here all your configuration in App.config:");
+                    Console.WriteLine(" Here all your configurations in App.config:");
                     table.Write();
                     Console.WriteLine();
                 }
             }
         }
 
+        [Command(Name = "select",
+        Usage = "select [file name]",
+        Description = "select working file",
+        ExtendedHelpText = "select working file")]
+        public void Select(
+            string fileName = null
+            )
+        {
+            switch (fileName)
+            {
+                case "today":
+                case null:
+                    Console.WriteLine("Selecting today's record");
+                    fileName = MyUtil.GetDateString(DateTime.Now);
+                    break;
+                default:
+                    if (File.Exists($@"{path}/src/records/{fileName}.md"))
+                    {
+                        break;
+                    }
+
+                    Console.WriteLine($"No record named {fileName}.md. Have you type the right name?");
+                    return;
+            }
+
+            fileName += ".md";
+            Console.WriteLine($"\nWorking on file: {fileName}\n");
+
+            MyUtil.AddUpdateAppSettings("WorkingOn", fileName + ",Current working file");
+        }
+
+        public void EditFile()
+        {
+
+        }
     }
 }
