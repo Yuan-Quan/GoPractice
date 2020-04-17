@@ -32,6 +32,10 @@ namespace GoPracticeCli
         //to store the console color when color changes
         ConsoleColor preForegroundColor;
 
+        //format of date time
+        const string dataFmt = "{0,-30}{1}";
+        const string timeFmt = "{0,-30}{1:yyyy-MM-dd HH:mm}";
+
         [Command(Name = "new",
         Usage = "new [date]",
         Description = "creat a new report",
@@ -48,6 +52,13 @@ namespace GoPracticeCli
             }
             
             Console.WriteLine($"new record will be named {date}.md");
+            Console.WriteLine();
+            // Get the local time zone and the current local time and year.
+            TimeZone localZone = TimeZone.CurrentTimeZone;
+            DateTime currentDate = DateTime.Now;
+            Console.WriteLine("Your current time zone set to:");
+            Console.WriteLine(dataFmt, "UTC offset:", localZone.GetUtcOffset(currentDate));
+            Console.WriteLine();
 
             if (File.Exists(@$"{path}/src/records/{date}.md"))
             {
