@@ -3,6 +3,7 @@ using System.IO;
 using CommandDotNet;
 using ConsoleTables;
 using GoPractice.MyUtil;
+using HeyRed.MarkdownSharp;
 
 namespace GoPracticeCli
 {
@@ -40,6 +41,7 @@ namespace GoPracticeCli
         Usage = "new [date]",
         Description = "creat a new report",
         ExtendedHelpText = "creat a new report,\nspecify [date] to customize the file name.\ncustom template or file path not implemented")]
+        [Obsolete]
         public void CreatNewReport(
             [Option(ShortName = "d")]string date = null
             )
@@ -54,7 +56,7 @@ namespace GoPracticeCli
             Console.WriteLine($"new record will be named {date}.md");
             Console.WriteLine();
             // Get the local time zone and the current local time and year.
-            TimeZone localZone = TimeZone.CurrentTimeZone;
+            var localZone = TimeZone.CurrentTimeZone;
             DateTime currentDate = DateTime.Now;
             Console.WriteLine("Your current time zone set to:");
             Console.WriteLine(dataFmt, "UTC offset:", localZone.GetUtcOffset(currentDate));
@@ -207,49 +209,49 @@ namespace GoPracticeCli
                     Console.WriteLine("Usage: config [opration] [key] [value]\nexample: config set path ~/GoPractice");
                     break;
             }
-        }
-
-        private void ConfigRemove(string k, string v)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ConfigAdd(string k, string v)
-        {
-            MyUtil.AddUpdateAppSettings(k, v);
-            Console.WriteLine();
-            preForegroundColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Configuration added successfully!!");
-            Console.ForegroundColor = preForegroundColor;
-        }
-
-        private void ConfigSet(string k, string v)
-        {
-            MyUtil.AddUpdateAppSettings(k, v);
-            Console.WriteLine();
-            preForegroundColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Configuration modified successfully!!");
-            Console.ForegroundColor = preForegroundColor;
-        }
-
-        private void ConfigView(string k)
-        {
-            if (k == null)
+            void ConfigRemove(string k, string v)
             {
-                //view all appsettings
-                var table = new ConsoleTable("key", "value", "description");
-                foreach (var setting in MyUtil.GetAllSettings())
-                {
-                    table.AddRow(setting.Key, setting.Value, setting.Description);
-                }
+                throw new NotImplementedException();
+            }
 
+            void ConfigAdd(string k, string v)
+            {
+                MyUtil.AddUpdateAppSettings(k, v);
                 Console.WriteLine();
-                Console.WriteLine(" Here all your configuration in App.config:");
-                table.Write();
+                preForegroundColor = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Configuration added successfully!!");
+                Console.ForegroundColor = preForegroundColor;
+            }
+
+            void ConfigSet(string k, string v)
+            {
+                MyUtil.AddUpdateAppSettings(k, v);
                 Console.WriteLine();
+                preForegroundColor = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Configuration modified successfully!!");
+                Console.ForegroundColor = preForegroundColor;
+            }
+
+            void ConfigView(string k)
+            {
+                if (k == null)
+                {
+                    //view all appsettings
+                    var table = new ConsoleTable("key", "value", "description");
+                    foreach (var setting in MyUtil.GetAllSettings())
+                    {
+                        table.AddRow(setting.Key, setting.Value, setting.Description);
+                    }
+
+                    Console.WriteLine();
+                    Console.WriteLine(" Here all your configuration in App.config:");
+                    table.Write();
+                    Console.WriteLine();
+                }
             }
         }
+
     }
 }
