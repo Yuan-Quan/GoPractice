@@ -1,14 +1,21 @@
 ﻿using System;
 using System.IO;
-using System.Configuration;
 using CommandDotNet;
+using ConsoleTables;
+using GoPractice.MyUtil;
 
-namespace GoPractice.Util
+namespace GoPracticeCli
 {
     class Program
     {
+
+        static void Startup()
+        {
+            //MyUtil.ReadAllSettings();
+        }
         static int Main(string[] args)
         {
+            Startup();
             return new AppRunner<MainEntry>()
             .UseDefaultMiddleware()
             .Run(args);
@@ -20,8 +27,7 @@ namespace GoPractice.Util
     public class MainEntry
     {
         //the path to the root of GoPracice
-        readonly string path = "/mnt/c/Users/yq/source/repos/GoPractice";
-        //readonly string path = ;
+        readonly string path = MyUtil.ReadSetting("path");
 
         //to store the console color when color changes
         ConsoleColor preForegroundColor;
@@ -38,7 +44,7 @@ namespace GoPractice.Util
             {
                 Console.WriteLine("No date specifyed, using current date");
                 //maybe print the current timezone 
-                date = Util.GetDateString(DateTime.Now);
+                date = MyUtil.GetDateString(DateTime.Now);
             }
             
             Console.WriteLine($"new record will be named {date}.md");
@@ -158,5 +164,81 @@ namespace GoPractice.Util
             }
         }
 
+        [Command(Name = "config",
+        Usage = "config [opration] [key] [value]\nexample: config set path ~/GoPractice",
+        Description = "view change/add settings",
+        ExtendedHelpText = "opration: view set add remove\nformat: [opration] key value,description")]
+        public void Config(
+            string opration = null,
+            string k = null,
+            string v = null
+            )
+        {
+            switch (opration)
+            {
+                case "v":
+                case "view":
+                    ConfigView(k);
+                    break;
+                case "set":
+                case "s":
+                    ConfigSet(k, v);
+                    break;
+                case "add":
+                case "a":
+                    ConfigAdd(k, v);
+                    break;
+                case "remove":
+                case "rm":
+                    ConfigRemove(k, v);
+                    break;
+                default:
+                    Console.WriteLine("Usage: config [opration] [key] [value]\nexample: config set path ~/GoPractice");
+                    break;
+            }
+        }
+
+        private void ConfigRemove(string k, string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ConfigAdd(string k, string v)
+        {
+            MyUtil.AddUpdateAppSettings(k, v);
+            Console.WriteLine();
+            preForegroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Configuration added successfully!!");
+            Console.ForegroundColor = preForegroundColor;
+        }
+
+        private void ConfigSet(string k, string v)
+        {
+            MyUtil.AddUpdateAppSettings(k, v);
+            Console.WriteLine();
+            preForegroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Configuration modified successfully!!");
+            Console.ForegroundColor = preForegroundColor;
+        }
+
+        private void ConfigView(string k)
+        {
+            if (k == null)
+            {
+                //view all appsettings
+                var table = new ConsoleTable("key", "value", "description");
+                foreach (var setting in MyUtil.GetAllSettings())
+                {
+                    table.AddRow(setting.Key, setting.Value, setting.Description);
+                }
+
+                Console.WriteLine();
+                Console.WriteLine(" Here all your configuration in App.config:");
+                table.Write();
+                Console.WriteLine();
+            }
+        }
     }
 }
