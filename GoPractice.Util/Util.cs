@@ -22,7 +22,10 @@ namespace GoPractice.MyUtil
     public static class MyUtil
     {
 
-
+        /// <summary>
+        /// get settings!!
+        /// </summary>
+        /// <returns>Enumrable Settings</returns>
         public static IEnumerable<Setting> GetAllSettings()
         {
             var appSettings = ConfigurationManager.AppSettings;
@@ -127,6 +130,11 @@ namespace GoPractice.MyUtil
             }
         }
 
+        /// <summary>
+        /// Return a string like Apr.3.2020
+        /// </summary>
+        /// <param name="dt">datetime</param>
+        /// <returns>string of date</returns>
         public static string GetDateString(DateTime dt)
         {
             var month = dt.Month;
@@ -137,7 +145,11 @@ namespace GoPractice.MyUtil
             return ""+MonthToString(month)+day+"."+year;
         }
 
-
+        /// <summary>
+        /// int to Jan. Feb. ...
+        /// </summary>
+        /// <param name="month">int month form 1 to 12</param>
+        /// <returns>Jan. Feb. ...</returns>
         private static string MonthToString(int month)
         {
             return month switch
@@ -157,5 +169,10 @@ namespace GoPractice.MyUtil
                 _ => "err",
             };
         } 
+
+        public static string ChekCheckbox(string str)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
