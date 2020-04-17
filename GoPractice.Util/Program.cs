@@ -27,7 +27,7 @@ namespace GoPracticeCli
     public class MainEntry
     {
         //the path to the root of GoPracice
-        readonly string path = MyUtil.ReadSetting("path");
+        readonly string path = MyUtil.ReadSetting("path").Split(',')[0];
 
         //to store the console color when color changes
         ConsoleColor preForegroundColor;
