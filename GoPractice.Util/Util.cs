@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Configuration;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace GoPractice.MyUtil
 {
@@ -168,11 +170,41 @@ namespace GoPractice.MyUtil
                 12 => "Dec.",
                 _ => "err",
             };
-        } 
-
-        public static string ChekCheckbox(string str)
-        {
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// get the text info of checkbox
+        /// </summary>
+        /// <param name="str">uncheked single line</param>
+        /// <returns>info text</returns>
+        private static string GetBoxInfo(string str)
+        {
+            return str.Substring(GetBoxIndex(str) + 3, str.Length - GetBoxIndex(str) - 2);
+        }
+
+        /// <summary>
+        /// check the checkbox
+        /// </summary>
+        /// <param name="str">single line string, contains only one checkbox</param>
+        /// <returns>checked string</returns>
+        private static string ChekCheckbox(string str)
+        {
+            var sb = new StringBuilder(str);
+            sb[GetBoxIndex(str)] = 'x';
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// match a patter of checkbox
+        /// </summary>
+        /// <param name="str">string to match</param>
+        /// <returns>index of box</returns>
+        private static int GetBoxIndex(string str)
+        {
+            var match = Regex.Match(str, "- [ ]");
+            return match.Index + 3;
+        }
+
+        
     }
 }
