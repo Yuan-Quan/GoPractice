@@ -1,17 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Configuration;
 
-namespace GoPractice.Util
+namespace GoPractice.MyUtil
 {
-    public static class Util
+    public class Setting
     {
+        public Setting(string key, string value,string description)
+        {
+            this.Key = key;
+            this.Value = value;
+            this.Description = description;
+        }
+
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public string Description { get; set; }
+    }
+
+    public static class MyUtil
+    {
+
+
+        public static IEnumerable<Setting> GetAllSettings()
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+
+            foreach (var key in appSettings.AllKeys)
+            {
+                yield return new Setting(key, appSettings[key].Split(',')[0], appSettings[key].Split(',')[1]);
+            }
+        }
+
         /// <summary>
         /// Print current settings
         /// </summary>
-        static void ReadAllSettings()
+        public static void ReadAllSettings()
         {
             try
             {
@@ -41,7 +66,7 @@ namespace GoPractice.Util
         /// </summary>
         /// <param name="key">key</param>
         /// <returns>value of appSettings[key]</returns>
-        static string ReadSetting(string key)
+        public static string ReadSetting(string key)
         {
             try
             {
@@ -61,7 +86,7 @@ namespace GoPractice.Util
         /// </summary>
         /// <param name="key">key</param>
         /// <param name="value">value</param>
-        static void AddUpdateAppSettings(string key, string value)
+        public static void AddUpdateAppSettings(string key, string value)
         {
             try
             {
@@ -74,6 +99,7 @@ namespace GoPractice.Util
                 else
                 {
                     settings[key].Value = value;
+                    
                 }
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
