@@ -16,9 +16,12 @@ namespace GoPracticeCli
         static int Main(string[] args)
         {
             Startup();
-            return new AppRunner<MainEntry>()
-            .UseDefaultMiddleware()
-            .Run(args);
+            var m = new MainEntry();
+            m.EditFile();
+            //return new AppRunner<MainEntry>()
+            //.UseDefaultMiddleware()
+            //.Run(args);
+            return 0;
         }
     }
 
@@ -254,7 +257,7 @@ namespace GoPracticeCli
         Usage = "select [file name]",
         Description = "select working file",
         ExtendedHelpText = "select working file")]
-        public static void Select(
+        public void Select(
             string fileName = null
             )
         {
@@ -281,7 +284,7 @@ namespace GoPracticeCli
             MyUtil.AddUpdateAppSettings("WorkingOn", fileName + ",Current working file");
         }
 
-        public static void EditFile(
+        public void EditFile(
             string fileName = null
             )
         {
@@ -289,8 +292,12 @@ namespace GoPracticeCli
             if (fileName == null)
             {
                 Console.WriteLine("No file specified, using selected file.");
-                fileName = MyUtil.ReadSetting("WorinkOn").Split(',')[0]+".md";
+                fileName = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
             }
+            Console.WriteLine($"Working on {fileName}...");
+            Console.WriteLine();
+            MyUtil.EditCheckbox(fileName);
+            
 
         }
 
@@ -298,7 +305,7 @@ namespace GoPracticeCli
         Usage = "cat [file name]",
         Description = "print a report",
         ExtendedHelpText = "just like cat command in a bash")]
-        public static void Cat(
+        public void Cat(
             string file = null
             )
         {

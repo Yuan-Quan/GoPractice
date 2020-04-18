@@ -219,7 +219,7 @@ namespace GoPractice.MyUtil
         /// 
         /// </summary>
         /// <param name="fileName"></param>
-        public static IEnumerable<string> EditCheckbox(string fileName)
+        public static /*IEnumerable<string>*/ void EditCheckbox(string fileName)
         {
             Console.WriteLine();
 
@@ -249,13 +249,13 @@ namespace GoPractice.MyUtil
                     Console.Write(MyUtil.GetBoxInfo(line));
                     Console.ForegroundColor = preForegroundColor;
                     Console.Write(" -> ");
-                    if ((Console.ReadLine().Trim() == "yes")||(Console.ReadLine().Trim() == "y"))
+                    if ((Console.ReadLine().Trim() == "yes") || (Console.ReadLine().Trim() == "y"))
                     {
-                        yield return MyUtil.ChekCheckbox(line);
+            //            yield return MyUtil.ChekCheckbox(line);
                     }
                     else if ((Console.ReadLine().Trim() == "no") || (Console.ReadLine().Trim() == "n"))
                     {
-                        yield return line;
+              //          yield return line;
                     }
                     else
                     {
@@ -267,7 +267,7 @@ namespace GoPractice.MyUtil
                 }
                 else
                 {
-                    yield return line;
+                //    yield return line;
                     continue;
                 }
             }
