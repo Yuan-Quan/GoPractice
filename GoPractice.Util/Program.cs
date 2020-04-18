@@ -288,5 +288,25 @@ namespace GoPracticeCli
         {
 
         }
+
+        [Command(Name = "cat",
+        Usage = "cat [file name]",
+        Description = "print a report",
+        ExtendedHelpText = "just like cat command in a bash")]
+        public void Cat(string file = null)
+        {
+            if (file == null)
+            {
+                Console.WriteLine();
+                Console.WriteLine("No file specified, Will read current file");
+                file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
+            }
+            Console.WriteLine();
+            
+            foreach (var line in MyUtil.ReadFrom($@"{path}/src/records/"+file))
+            {
+                Console.WriteLine(line);
+            }
+        }
     }
 }
