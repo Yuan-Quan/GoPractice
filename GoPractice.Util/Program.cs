@@ -26,9 +26,6 @@ namespace GoPracticeCli
 
     public class MainEntry
     {
-        //the path to the root of GoPracice
-        readonly string path = MyUtil.ReadSetting("path").Split(',')[0];
-
         //to store the console color when color changes
         ConsoleColor preForegroundColor;
 
@@ -60,11 +57,11 @@ namespace GoPracticeCli
             Console.WriteLine(dataFmt, "UTC offset:", localZone.GetUtcOffset(currentDate));
             Console.WriteLine();
 
-            if (File.Exists(@$"{path}/src/records/{date}.md"))
+            if (File.Exists(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md"))
             {
                 //file already exists
 
-                Console.Write($"{path}/src/records/templates.md already exitsts, ");
+                Console.Write($"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/templates.md already exitsts, ");
 
                 Console.WriteLine("\n");
                 preForegroundColor = Console.ForegroundColor;
@@ -137,10 +134,10 @@ namespace GoPracticeCli
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write("DELETE");
                 Console.ForegroundColor = preForegroundColor;
-                Console.Write(@$" {path}/src/records/{date}.md");
+                Console.Write(@$" {MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md");
                 Console.WriteLine();
 
-                File.Delete(@$"{path}/src/records/{date}.md");
+                File.Delete(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md");
 
                 preForegroundColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -154,7 +151,7 @@ namespace GoPracticeCli
             {
                 try
                 {
-                    File.Copy(@$"{path}/src/templates/DailyReport.md", @$"{path}/src/records/{date}.md");
+                    File.Copy(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/templates/DailyReport.md", @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md");
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -257,7 +254,7 @@ namespace GoPracticeCli
         Usage = "select [file name]",
         Description = "select working file",
         ExtendedHelpText = "select working file")]
-        public void Select(
+        public static void Select(
             string fileName = null
             )
         {
@@ -269,7 +266,7 @@ namespace GoPracticeCli
                     fileName = MyUtil.GetDateString(DateTime.Now);
                     break;
                 default:
-                    if (File.Exists($@"{path}/src/records/{fileName}.md"))
+                    if (File.Exists($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{fileName}.md"))
                     {
                         break;
                     }
@@ -284,16 +281,25 @@ namespace GoPracticeCli
             MyUtil.AddUpdateAppSettings("WorkingOn", fileName + ",Current working file");
         }
 
-        public void EditFile()
+        public static void EditFile(
+            string fileName = null
+            )
         {
-
+            Console.WriteLine();
+            if (fileName == null)
+            {
+                Console.WriteLine("No file specified, using selected file.");
+                fileName = MyUtil.ReadSetting("WorinkOn").Split(',')[0];
+            }
         }
 
         [Command(Name = "cat",
         Usage = "cat [file name]",
         Description = "print a report",
         ExtendedHelpText = "just like cat command in a bash")]
-        public void Cat(string file = null)
+        public static void Cat(
+            string file = null
+            )
         {
             if (file == null)
             {
@@ -303,7 +309,7 @@ namespace GoPracticeCli
             }
             Console.WriteLine();
             
-            foreach (var line in MyUtil.ReadFrom($@"{path}/src/records/"+file))
+            foreach (var line in MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file))
             {
                 Console.WriteLine(line);
             }
