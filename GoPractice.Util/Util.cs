@@ -210,9 +210,69 @@ namespace GoPractice.MyUtil
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool IsCheckbox(string str)
+        private static bool IsCheckbox(string str)
         {
             return str.Contains("- [ ]");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static IEnumerable<string> EditCheckbox(string fileName)
+        {
+            Console.WriteLine();
+
+            Console.WriteLine("Now editing Checkboxes");
+            Console.Write("Use ");
+            
+            ConsoleColor preForegroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\"yes [y]\" ");
+            Console.ForegroundColor = preForegroundColor;
+
+            preForegroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("\"no [n]\" ");
+            Console.ForegroundColor = preForegroundColor;
+
+            Console.Write("to set checkbox state");
+            
+            Console.WriteLine();
+
+            foreach (var line in MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{fileName}"))
+            {
+                if (!MyUtil.IsCheckbox(line))
+                {
+                    preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(MyUtil.GetBoxInfo(line));
+                    Console.ForegroundColor = preForegroundColor;
+                    Console.Write(" -> ");
+                    if ((Console.ReadLine().Trim() == "yes")||(Console.ReadLine().Trim() == "y"))
+                    {
+                        yield return MyUtil.ChekCheckbox(line);
+                    }
+                    else if ((Console.ReadLine().Trim() == "no") || (Console.ReadLine().Trim() == "n"))
+                    {
+                        yield return line;
+                    }
+                    else
+                    {
+                        Console.WriteLine("unknow option");
+                    }
+
+                    Console.WriteLine();
+                    
+                }
+                else
+                {
+                    yield return line;
+                    continue;
+                }
+            }
+
+            
         }
         
     }

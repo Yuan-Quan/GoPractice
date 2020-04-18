@@ -289,8 +289,9 @@ namespace GoPracticeCli
             if (fileName == null)
             {
                 Console.WriteLine("No file specified, using selected file.");
-                fileName = MyUtil.ReadSetting("WorinkOn").Split(',')[0];
+                fileName = MyUtil.ReadSetting("WorinkOn").Split(',')[0]+".md";
             }
+
         }
 
         [Command(Name = "cat",
