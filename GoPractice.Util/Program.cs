@@ -16,9 +16,12 @@ namespace GoPracticeCli
         static int Main(string[] args)
         {
             Startup();
-            return new AppRunner<MainEntry>()
-            .UseDefaultMiddleware()
-            .Run(args);
+            var m = new MainEntry();
+            m.EditFile();
+            //return new AppRunner<MainEntry>()
+            //.UseDefaultMiddleware()
+            //.Run(args);
+            return 0;
         }
     }
 
@@ -26,9 +29,6 @@ namespace GoPracticeCli
 
     public class MainEntry
     {
-        //the path to the root of GoPracice
-        readonly string path = MyUtil.ReadSetting("path").Split(',')[0];
-
         //to store the console color when color changes
         ConsoleColor preForegroundColor;
 
@@ -60,11 +60,11 @@ namespace GoPracticeCli
             Console.WriteLine(dataFmt, "UTC offset:", localZone.GetUtcOffset(currentDate));
             Console.WriteLine();
 
-            if (File.Exists(@$"{path}/src/records/{date}.md"))
+            if (File.Exists(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md"))
             {
                 //file already exists
 
-                Console.Write($"{path}/src/records/templates.md already exitsts, ");
+                Console.Write($"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/templates.md already exitsts, ");
 
                 Console.WriteLine("\n");
                 preForegroundColor = Console.ForegroundColor;
@@ -137,10 +137,10 @@ namespace GoPracticeCli
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write("DELETE");
                 Console.ForegroundColor = preForegroundColor;
-                Console.Write(@$" {path}/src/records/{date}.md");
+                Console.Write(@$" {MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md");
                 Console.WriteLine();
 
-                File.Delete(@$"{path}/src/records/{date}.md");
+                File.Delete(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md");
 
                 preForegroundColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -154,7 +154,7 @@ namespace GoPracticeCli
             {
                 try
                 {
-                    File.Copy(@$"{path}/src/templates/DailyReport.md", @$"{path}/src/records/{date}.md");
+                    File.Copy(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/templates/DailyReport.md", @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md");
                 }
                 catch (DirectoryNotFoundException)
                 {
@@ -269,7 +269,7 @@ namespace GoPracticeCli
                     fileName = MyUtil.GetDateString(DateTime.Now);
                     break;
                 default:
-                    if (File.Exists($@"{path}/src/records/{fileName}.md"))
+                    if (File.Exists($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{fileName}.md"))
                     {
                         break;
                     }
@@ -284,9 +284,43 @@ namespace GoPracticeCli
             MyUtil.AddUpdateAppSettings("WorkingOn", fileName + ",Current working file");
         }
 
-        public void EditFile()
+        public void EditFile(
+            string fileName = null
+            )
         {
+            Console.WriteLine();
+            if (fileName == null)
+            {
+                Console.WriteLine("No file specified, using selected file.");
+                fileName = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
+            }
+            Console.WriteLine($"Working on {fileName}...");
+            Console.WriteLine();
+            MyUtil.EditCheckbox(fileName);
+            
 
+        }
+
+        [Command(Name = "cat",
+        Usage = "cat [file name]",
+        Description = "print a report",
+        ExtendedHelpText = "just like cat command in a bash")]
+        public void Cat(
+            string file = null
+            )
+        {
+            if (file == null)
+            {
+                Console.WriteLine();
+                Console.WriteLine("No file specified, Will read current file");
+                file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
+            }
+            Console.WriteLine();
+            
+            foreach (var line in MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file))
+            {
+                Console.WriteLine(line);
+            }
         }
     }
 }
