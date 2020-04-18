@@ -205,6 +205,15 @@ namespace GoPractice.MyUtil
             return match.Index + 3;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsCheckbox(string str)
+        {
+            return str.Contains("- [ ]");
+        }
         
     }
 }
