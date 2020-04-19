@@ -40,10 +40,11 @@ Explain how to run the automated tests for this system: no this feature
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
-
-```
-Give an example
+first test can it run properly:
+  
+linux
+```bash
+dotnet gpcli.dll --help
 ```
 
 ### And coding style tests
