@@ -284,6 +284,10 @@ namespace GoPracticeCli
             MyUtil.AddUpdateAppSettings("WorkingOn", fileName + ",Current working file");
         }
 
+        [Command(Name = "edit",
+        Usage = "edit [fileName]",
+        Description = "edit a report",
+        ExtendedHelpText = "edit file")]
         public void EditFile(
             string fileName = null
             )
@@ -296,9 +300,7 @@ namespace GoPracticeCli
             }
             Console.WriteLine($"Working on {fileName}...");
             Console.WriteLine();
-            MyUtil.EditCheckbox(fileName);
-            
-
+            MyUtil.TODOEdit(fileName);
         }
 
         [Command(Name = "cat",

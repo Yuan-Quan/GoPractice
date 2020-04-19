@@ -219,7 +219,7 @@ namespace GoPractice.MyUtil
         /// 
         /// </summary>
         /// <param name="fileName"></param>
-        public static /*IEnumerable<string>*/ void EditCheckbox(string fileName)
+        public static /*IEnumerable<string>*/ void TODOEdit(string fileName)
         {
             Console.WriteLine();
 
