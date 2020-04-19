@@ -51,3 +51,15 @@ __水曜日__ | __[Done](/src/record/Apr15.2020.md)__
 __木曜日__ | __[Done](/src/record/Apr16.2020.md)__
 __金曜日__ | __[Done](/src/record/Apr17.2020.md)__
 __土曜日__ | __[Done](/src/record/Apr18.2020.md)__
+
+#### April 20, 2020 to April 27, 2020
+
+First Header | Second Header
+------------ | -------------
+__日曜日__ | __[Exam,ButStillPracticed](/src/record/Apr12.2020.md)__
+__月曜日__ | __[Done](/src/record/Apr13.2020.md)__
+__火曜日__ | __[Done](/src/record/Apr14.2020.md)__
+__水曜日__ | __[Done](/src/record/Apr15.2020.md)__
+__木曜日__ | __[Done](/src/record/Apr16.2020.md)__
+__金曜日__ | __[Done](/src/record/Apr17.2020.md)__
+__土曜日__ | __[Done](/src/record/Apr18.2020.md)__
