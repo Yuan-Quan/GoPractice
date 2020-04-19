@@ -30,7 +30,7 @@ A step by step series of examples that tell you how to get a development env run
 Say what the step will be: just like compile a .Netcore app
 
 ```bash
-$ dotnet run
+$ dotnet restore && dotnet build
 > some text that shows you started the app
 ```
 
@@ -40,12 +40,21 @@ Explain how to run the automated tests for this system: no this feature
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
+first test can it run properly:
+  
+linux
 
+```bash
+dotnet gpcli.dll --help
 ```
-Give an example
-```
+  
+windows
 
+```bash
+gpcli.exe --help
+```
+  
+it should show helps.
 ### And coding style tests
 
 Explain what these tests test and why
