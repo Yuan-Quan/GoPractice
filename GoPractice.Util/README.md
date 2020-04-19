@@ -43,10 +43,18 @@ Explain how to run the automated tests for this system: no this feature
 first test can it run properly:
   
 linux
+
 ```bash
 dotnet gpcli.dll --help
 ```
+  
+windows
 
+```bash
+gpcli.exe --help
+```
+  
+it should show helps.
 ### And coding style tests
 
 Explain what these tests test and why
