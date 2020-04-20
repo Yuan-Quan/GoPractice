@@ -16,12 +16,12 @@ namespace GoPracticeCli
         static int Main(string[] args)
         {
             Startup();
-            var m = new MainEntry();
-            m.EditFile();
-            //return new AppRunner<MainEntry>()
-            //.UseDefaultMiddleware()
-            //.Run(args);
-            return 0;
+            //var m = new MainEntry();
+            //m.EditFile();
+            return new AppRunner<MainEntry>()
+            .UseDefaultMiddleware()
+            .Run(args);
+            //return 0;
         }
     }
 
@@ -313,7 +313,7 @@ namespace GoPracticeCli
         Description = "print a report",
         ExtendedHelpText = "just like cat command in a bash")]
         public void Cat(
-            string file = null
+            string file = null   
             )
         {
             if (file == null)
