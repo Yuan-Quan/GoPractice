@@ -256,12 +256,12 @@ namespace GoPractice.MyUtil
                         string ck = Console.ReadLine().Trim();
                         if ((ck == "yes") || (ck == "y"))
                         {
-                //          yield return MyUtil.ChekCheckbox(line);
+                            yield return MyUtil.ChekCheckbox(line);
                             break;
                         }
                         else if ((ck == "no") || (ck == "n"))
                         {
-                //          yield return line;
+                            yield return line;
                             break;
                         }
                         else
@@ -275,7 +275,7 @@ namespace GoPractice.MyUtil
                 }
                 else
                 {
-                //    yield return line;
+                    yield return line;
                     continue;
                 }
             }

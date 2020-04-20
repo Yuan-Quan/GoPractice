@@ -3,7 +3,7 @@ using System.IO;
 using CommandDotNet;
 using ConsoleTables;
 using GoPractice.MyUtil;
-using HeyRed.MarkdownSharp;
+using System.Collections.Generic;
 
 namespace GoPracticeCli
 {
@@ -300,7 +300,11 @@ namespace GoPracticeCli
             }
             Console.WriteLine($"Working on {fileName}...");
             Console.WriteLine();
-            MyUtil.TODOEdit(fileName);
+            var s = new List<string>();
+            foreach (var item in MyUtil.TODOEdit(fileName))
+            {
+                
+            }
         }
 
         [Command(Name = "cat",
