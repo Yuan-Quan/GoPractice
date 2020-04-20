@@ -219,7 +219,7 @@ namespace GoPractice.MyUtil
         /// 
         /// </summary>
         /// <param name="fileName"></param>
-        public static /*IEnumerable<string>*/ void TODOEdit(string fileName)
+        public static IEnumerable<string> TODOEdit(string fileName)
         {
             Console.WriteLine();
 
@@ -245,7 +245,7 @@ namespace GoPractice.MyUtil
                 if (MyUtil.IsCheckbox(line))
                 {
                     
-                    inner: while (true)
+                    while (true)
                     {
                         preForegroundColor = Console.ForegroundColor;
                         Console.ForegroundColor = ConsoleColor.Cyan;
@@ -283,5 +283,21 @@ namespace GoPractice.MyUtil
             
         }
         
+        public static void WriteAFile(List<string> ls, string path)
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+            using(TextWriter tw = new StreamWriter(path))
+            {
+            foreach (String s in ls)
+                tw.WriteLine(s);
+            }
+            var preForegroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("File Write Succeed!!");
+            Console.ForegroundColor = preForegroundColor;
+        }
     }
 }

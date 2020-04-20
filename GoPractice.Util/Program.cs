@@ -303,8 +303,9 @@ namespace GoPracticeCli
             var s = new List<string>();
             foreach (var item in MyUtil.TODOEdit(fileName))
             {
-                
+                s.Add(item);
             }
+
         }
 
         [Command(Name = "cat",
@@ -323,10 +324,13 @@ namespace GoPracticeCli
             }
             Console.WriteLine();
             
+            var fl = new List<string>(); 
             foreach (var line in MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file))
             {
-                Console.WriteLine(line);
+                fl.Add(line);
             }
+
+            MyUtil.WriteAFile(fl, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/+{file}");
         }
     }
 }
