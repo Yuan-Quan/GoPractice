@@ -16,12 +16,12 @@ namespace GoPracticeCli
         static int Main(string[] args)
         {
             Startup();
-            //var m = new MainEntry();
-            //m.EditFile();
-            return new AppRunner<MainEntry>()
-            .UseDefaultMiddleware()
-            .Run(args);
-            //return 0;
+            var m = new MainEntry();
+            m.EditFile();
+            //return new AppRunner<MainEntry>()
+            //.UseDefaultMiddleware()
+            //.Run(args);
+            return 0;
         }
     }
 
