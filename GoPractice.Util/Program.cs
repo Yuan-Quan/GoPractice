@@ -3,7 +3,7 @@ using System.IO;
 using CommandDotNet;
 using ConsoleTables;
 using GoPractice.MyUtil;
-using HeyRed.MarkdownSharp;
+using System.Collections.Generic;
 
 namespace GoPracticeCli
 {
@@ -16,12 +16,12 @@ namespace GoPracticeCli
         static int Main(string[] args)
         {
             Startup();
-            //var m = new MainEntry();
-            //m.EditFile();
-            return new AppRunner<MainEntry>()
-            .UseDefaultMiddleware()
-            .Run(args);
-            //return 0;
+            var m = new MainEntry();
+            m.EditFile();
+            //return new AppRunner<MainEntry>()
+            //.UseDefaultMiddleware()
+            //.Run(args);
+            return 0;
         }
     }
 
@@ -284,6 +284,10 @@ namespace GoPracticeCli
             MyUtil.AddUpdateAppSettings("WorkingOn", fileName + ",Current working file");
         }
 
+        [Command(Name = "edit",
+        Usage = "edit [fileName]",
+        Description = "edit a report",
+        ExtendedHelpText = "edit file")]
         public void EditFile(
             string fileName = null
             )
@@ -296,8 +300,11 @@ namespace GoPracticeCli
             }
             Console.WriteLine($"Working on {fileName}...");
             Console.WriteLine();
-            MyUtil.EditCheckbox(fileName);
-            
+            var s = new List<string>();
+            foreach (var item in MyUtil.TODOEdit(fileName))
+            {
+                s.Add(item);
+            }
 
         }
 
@@ -317,10 +324,13 @@ namespace GoPracticeCli
             }
             Console.WriteLine();
             
+            var fl = new List<string>(); 
             foreach (var line in MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file))
             {
-                Console.WriteLine(line);
+                fl.Add(line);
             }
+
+            MyUtil.WriteAFile(fl, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/+{file}");
         }
     }
 }
