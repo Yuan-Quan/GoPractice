@@ -289,29 +289,39 @@ namespace GoPracticeCli
         Description = "todo",
         ExtendedHelpText = "edit file")]
         public void EditFile(
-        [Operand(Name = "OPRATION", 
+        [Operand(Name = "opration", 
         Description = "What do you want to do? editTODO, add, attach")] 
         string opr,
-        [Option(LongName = "turbo", ShortName = "t", 
-        Description = "Name of the planet you wish the rocket to go")] 
-        string 
-
+        [Option(LongName = "addFile", ShortName = "a", 
+        Description = "file you want to attach")] 
+        string fileAtch = null,
+        [Option(LongName = "file", ShortName = "f", 
+        Description = "file you want to edit")] 
+        string file = null
             )
         {
-            switch (opr)
-            {
-                
-                default:
-            }
-
-            void CheckTODO()
+            if (file == null)
             {
                 Console.WriteLine();
-                if (fileName == null)
-                {
-                    Console.WriteLine("No file specified, using selected file.");
-                    fileName = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
-                }
+                Console.WriteLine("No file specified, Will edit current file");
+                file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
+            }
+            switch (opr)
+            {
+                case "TODO":
+                case "todo":
+                    CheckTODO(file);
+                    break;
+                default:
+                System.Console.WriteLine();
+                System.Console.WriteLine("unknow opration");
+                break;
+            }
+
+
+            void CheckTODO(string fileName)
+            {
+                Console.WriteLine();
                 Console.WriteLine($"Working on {fileName}...");
                 Console.WriteLine();
                 var s = new List<string>();
@@ -319,6 +329,8 @@ namespace GoPracticeCli
                 {
                     s.Add(item);
                 }
+                
+                MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/+{fileName}");
             }
 
         }
@@ -342,10 +354,9 @@ namespace GoPracticeCli
             var fl = new List<string>(); 
             foreach (var line in MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file))
             {
-                fl.Add(line);
+                System.Console.WriteLine(line);
             }
 
-            MyUtil.WriteAFile(fl, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/+{file}");
         }
     }
 }
