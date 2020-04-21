@@ -285,25 +285,40 @@ namespace GoPracticeCli
         }
 
         [Command(Name = "edit",
-        Usage = "edit [fileName]",
-        Description = "edit a report",
+        Usage = "edit [option] [paramter]",
+        Description = "todo",
         ExtendedHelpText = "edit file")]
         public void EditFile(
-            string fileName = null
+        [Operand(Name = "OPRATION", 
+        Description = "What do you want to do? editTODO, add, attach")] 
+        string opr,
+        [Option(LongName = "turbo", ShortName = "t", 
+        Description = "Name of the planet you wish the rocket to go")] 
+        string 
+
             )
         {
-            Console.WriteLine();
-            if (fileName == null)
+            switch (opr)
             {
-                Console.WriteLine("No file specified, using selected file.");
-                fileName = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
+                
+                default:
             }
-            Console.WriteLine($"Working on {fileName}...");
-            Console.WriteLine();
-            var s = new List<string>();
-            foreach (var item in MyUtil.TODOEdit(fileName))
+
+            void CheckTODO()
             {
-                s.Add(item);
+                Console.WriteLine();
+                if (fileName == null)
+                {
+                    Console.WriteLine("No file specified, using selected file.");
+                    fileName = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
+                }
+                Console.WriteLine($"Working on {fileName}...");
+                Console.WriteLine();
+                var s = new List<string>();
+                foreach (var item in MyUtil.TODOEdit(fileName))
+                {
+                    s.Add(item);
+                }
             }
 
         }
