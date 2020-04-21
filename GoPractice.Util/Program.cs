@@ -294,12 +294,18 @@ namespace GoPracticeCli
         string opr,
         [Option(LongName = "addFile", ShortName = "a", 
         Description = "file you want to attach")] 
-        string filePath,
+        string fileAtch = null,
         [Option(LongName = "file", ShortName = "f", 
-        Description = "file you want to attach")] 
-        string file
+        Description = "file you want to edit")] 
+        string file = null
             )
         {
+            if (file == null)
+            {
+                Console.WriteLine();
+                Console.WriteLine("No file specified, Will edit current file");
+                file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
+            }
             switch (opr)
             {
                 case "TODO":
@@ -312,14 +318,10 @@ namespace GoPracticeCli
                 break;
             }
 
+
             void CheckTODO(string fileName)
             {
                 Console.WriteLine();
-                if (fileName == null)
-                {
-                    Console.WriteLine("No file specified, using selected file.");
-                    fileName = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
-                }
                 Console.WriteLine($"Working on {fileName}...");
                 Console.WriteLine();
                 var s = new List<string>();
@@ -327,6 +329,8 @@ namespace GoPracticeCli
                 {
                     s.Add(item);
                 }
+                
+                MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/+{fileName}");
             }
 
         }
@@ -350,10 +354,9 @@ namespace GoPracticeCli
             var fl = new List<string>(); 
             foreach (var line in MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file))
             {
-                fl.Add(line);
+                System.Console.WriteLine(line);
             }
 
-            MyUtil.WriteAFile(fl, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/+{file}");
         }
     }
 }
