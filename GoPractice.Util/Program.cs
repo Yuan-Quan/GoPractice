@@ -289,22 +289,30 @@ namespace GoPracticeCli
         Description = "todo",
         ExtendedHelpText = "edit file")]
         public void EditFile(
-        [Operand(Name = "OPRATION", 
+        [Operand(Name = "opration", 
         Description = "What do you want to do? editTODO, add, attach")] 
         string opr,
-        [Option(LongName = "turbo", ShortName = "t", 
-        Description = "Name of the planet you wish the rocket to go")] 
-        string 
-
+        [Option(LongName = "addFile", ShortName = "a", 
+        Description = "file you want to attach")] 
+        string filePath,
+        [Option(LongName = "file", ShortName = "f", 
+        Description = "file you want to attach")] 
+        string file
             )
         {
             switch (opr)
             {
-                
+                case "TODO":
+                case "todo":
+                    CheckTODO(file);
+                    break;
                 default:
+                System.Console.WriteLine();
+                System.Console.WriteLine("unknow opration");
+                break;
             }
 
-            void CheckTODO()
+            void CheckTODO(string fileName)
             {
                 Console.WriteLine();
                 if (fileName == null)
