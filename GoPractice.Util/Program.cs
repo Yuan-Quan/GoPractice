@@ -330,6 +330,10 @@ namespace GoPracticeCli
                     s.Add(item);
                 }
                 
+                //foreach (var item in s)
+                //{
+                //    System.Console.WriteLine(item);
+                //}                
                 MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/+{fileName}");
             }
 
