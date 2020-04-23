@@ -27,8 +27,6 @@ __Maintain your hearing, don't be DEAF!!__
 
 __Just listen to some music you like.__
 
-- [x] Have fun  
+- [ ] Have fun  
 
 ## What did you do, Any midi or recording
-
-## Any thing special? Leave it here
