@@ -290,27 +290,29 @@ namespace GoPracticeCli
         ExtendedHelpText = "edit file")]
         public void EditFile(
         [Operand(Name = "opration", 
-        Description = "What do you want to do? editTODO, add, attach")] 
+        Description = "What do you want to do? editTODO, add, delete, attach")] 
         string opr,
-        [Option(LongName = "addFile", ShortName = "a", 
+        [Option(LongName = "file", ShortName = "f", 
         Description = "file you want to attach")] 
         string fileAtch = null,
-        [Option(LongName = "file", ShortName = "f", 
-        Description = "file you want to edit")] 
-        string file = null
+        [Option(LongName = "addline", ShortName = "l", 
+        Description = "string you want to attach")] 
+        string addStr = null
             )
         {
-            if (file == null)
-            {
-                Console.WriteLine();
-                Console.WriteLine("No file specified, Will edit current file");
-                file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
-            }
+            Console.WriteLine("Will edit current file");
+            var file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
             switch (opr)
             {
                 case "TODO":
                 case "todo":
                     CheckTODO(file);
+                    break;
+                case "a":
+                case "add":
+                case "ADD":
+                case "Add":
+                    AddAString(addStr);
                     break;
                 default:
                 System.Console.WriteLine();
@@ -318,6 +320,12 @@ namespace GoPracticeCli
                 break;
             }
 
+            void AddAString(string str)
+            {
+                var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file));
+                s.Add(str);
+                MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/", file);
+            }
 
             void CheckTODO(string fileName)
             {
