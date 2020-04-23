@@ -283,16 +283,16 @@ namespace GoPractice.MyUtil
             
         }
         
-        public static void WriteAFile(List<string> ls, string path)
+        public static void WriteAFile(List<string> ls, string path, string fileName)
         {
             if (File.Exists(path))
             {
                 File.Delete(path);
             }
-            using(TextWriter tw = new StreamWriter(path))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, fileName)))
             {
-            foreach (String s in ls)
-                tw.WriteLine(s);
+                foreach (string line in ls)
+                    outputFile.WriteLine(line);
             }
             var preForegroundColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
