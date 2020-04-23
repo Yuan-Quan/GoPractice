@@ -334,7 +334,7 @@ namespace GoPracticeCli
                 //{
                 //    System.Console.WriteLine(item);
                 //}                
-                MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/+{fileName}");
+                MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/", fileName);
             }
 
         }
