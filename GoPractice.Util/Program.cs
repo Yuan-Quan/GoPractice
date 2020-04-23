@@ -294,7 +294,10 @@ namespace GoPracticeCli
         string opr,
         [Option(LongName = "file", ShortName = "f", 
         Description = "file you want to attach")] 
-        string fileAtch = null
+        string fileAtch = null,
+        [Option(LongName = "addline", ShortName = "l", 
+        Description = "string you want to attach")] 
+        string addStr = null
             )
         {
             Console.WriteLine("Will edit current file");
@@ -305,12 +308,24 @@ namespace GoPracticeCli
                 case "todo":
                     CheckTODO(file);
                     break;
+                case "a":
+                case "add":
+                case "ADD":
+                case "Add":
+                    AddAString(addStr);
+                    break;
                 default:
                 System.Console.WriteLine();
                 System.Console.WriteLine("unknow opration");
                 break;
             }
 
+            void AddAString(string str)
+            {
+                var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file));
+                s.Add(str);
+                MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/", file);
+            }
 
             void CheckTODO(string fileName)
             {
