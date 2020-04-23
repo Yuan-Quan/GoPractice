@@ -290,22 +290,15 @@ namespace GoPracticeCli
         ExtendedHelpText = "edit file")]
         public void EditFile(
         [Operand(Name = "opration", 
-        Description = "What do you want to do? editTODO, add, attach")] 
+        Description = "What do you want to do? editTODO, add, delete, attach")] 
         string opr,
-        [Option(LongName = "addFile", ShortName = "a", 
-        Description = "file you want to attach")] 
-        string fileAtch = null,
         [Option(LongName = "file", ShortName = "f", 
-        Description = "file you want to edit")] 
-        string file = null
+        Description = "file you want to attach")] 
+        string fileAtch = null
             )
         {
-            if (file == null)
-            {
-                Console.WriteLine();
-                Console.WriteLine("No file specified, Will edit current file");
-                file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
-            }
+            Console.WriteLine("Will edit current file");
+            var file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
             switch (opr)
             {
                 case "TODO":
