@@ -286,7 +286,7 @@ namespace GoPracticeCli
 
         [Command(Name = "edit",
         Usage = "edit [option] [paramter]",
-        Description = "todo",
+        Description = "todo add delete",
         ExtendedHelpText = "edit file")]
         public void EditFile(
         [Operand(Name = "opration", 
@@ -314,15 +314,29 @@ namespace GoPracticeCli
                 case "Add":
                     AddAString(addStr);
                     break;
+                case "d":
+                case "delete":
+                case "DELETE":
+                case "Delete":
+                    DeleteLastString();
+                    break;
                 default:
                 System.Console.WriteLine();
                 System.Console.WriteLine("unknow opration");
                 break;
             }
 
+            void DeleteLastString()
+            {
+                var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/" + file));
+                s.RemoveAt(s.Count - 1);
+                MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/", file);
+            }
+
             void AddAString(string str)
             {
                 var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file));
+                str = str.Replace("\n", "  ");
                 s.Add(str);
                 MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/", file);
             }
@@ -350,7 +364,7 @@ namespace GoPracticeCli
         [Command(Name = "cat",
         Usage = "cat [file name]",
         Description = "print a report",
-        ExtendedHelpText = "just like cat command in a bash")]
+        ExtendedHelpText = "just like cat command in bash")]
         public void Cat(
             string file = null   
             )
