@@ -289,15 +289,24 @@ namespace GoPracticeCli
         Description = "todo add delete",
         ExtendedHelpText = "edit file")]
         public void EditFile(
-        [Operand(Name = "opration", 
-        Description = "What do you want to do? editTODO, add, delete, attach")] 
+        [Operand(Name = "opration",
+        Description = "What do you want to do? editTODO, add, delete, attach")]
         string opr,
-        [Option(LongName = "file", ShortName = "f", 
-        Description = "file you want to attach")] 
+        [Option(LongName = "file", ShortName = "f",
+        Description = "file you want to attach")]
         string fileAtch = null,
-        [Option(LongName = "addline", ShortName = "l", 
-        Description = "string you want to attach")] 
-        string addStr = null
+        [Option(LongName = "addline", ShortName = "l",
+        Description = "string you want to attach")]
+        string addStr = null,
+        [Option(LongName = "audio", ShortName = "a",
+        Description = "attach file type is audio")]
+        bool isAudio = false,
+        [Option(LongName = "midi", ShortName = "m",
+        Description = "attach  file type is midi")]
+        bool isMidi = false,
+        [Option(LongName = "image", ShortName = "i",
+        Description = "attach file is image")]
+        bool isImage = false
             )
         {
             Console.WriteLine("Will edit current file");
@@ -324,6 +333,16 @@ namespace GoPracticeCli
                 System.Console.WriteLine();
                 System.Console.WriteLine("unknow opration");
                 break;
+            }
+            void AttachFile(string fileType, string path)
+            {
+                switch (fileType)
+                {
+                    case "audio":
+                    case "a":
+                    default:
+                        break;
+                }
             }
 
             void DeleteLastString()
