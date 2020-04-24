@@ -297,16 +297,7 @@ namespace GoPracticeCli
         string fileAtch = null,
         [Option(LongName = "addline", ShortName = "l",
         Description = "string you want to attach")]
-        string addStr = null,
-        [Option(LongName = "audio", ShortName = "a",
-        Description = "attach file type is audio")]
-        bool isAudio = false,
-        [Option(LongName = "midi", ShortName = "m",
-        Description = "attach  file type is midi")]
-        bool isMidi = false,
-        [Option(LongName = "image", ShortName = "i",
-        Description = "attach file is image")]
-        bool isImage = false
+        string addStr = null
             )
         {
             Console.WriteLine("Will edit current file");
@@ -329,6 +320,19 @@ namespace GoPracticeCli
                 case "Delete":
                     DeleteLastString();
                     break;
+                case "attach":
+                case "ATTACH":
+                case "Attach":
+                    if (fileAtch == null)
+                    {
+                        Console.WriteLine();
+                        var preForegroundColor = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("You must specify a file path when attach a file");
+                        Console.ForegroundColor = preForegroundColor;
+                    }
+                    AttachFile(, "", "");
+                    break;
                 default:
                 System.Console.WriteLine();
                 System.Console.WriteLine("unknow opration");
@@ -336,13 +340,7 @@ namespace GoPracticeCli
             }
             void AttachFile(string fileType, string path)
             {
-                switch (fileType)
-                {
-                    case "audio":
-                    case "a":
-                    default:
-                        break;
-                }
+                
             }
 
             void DeleteLastString()
