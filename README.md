@@ -59,8 +59,8 @@ First Header | Second Header
 __日曜日__ | 
 __月曜日__ | 
 __火曜日__ |  My keyboard broken...
-__水曜日__ | 
-__木曜日__ | 
-__金曜日__ | 
+__水曜日__ | __[Done](/src/record/Apr18.2020.md)__
+__木曜日__ | __[Done](/src/record/Apr18.2020.md)__
+__金曜日__ | __[Done](/src/record/Apr18.2020.md)__
 __土曜日__ | 
 
