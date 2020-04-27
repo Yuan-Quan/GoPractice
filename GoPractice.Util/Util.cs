@@ -304,5 +304,10 @@ namespace GoPractice.MyUtil
         {
             return str.Contains(" | ");
         }
+
+        private static string GetRowInfo(string str)
+        {
+            return str.Split(" | ")[0];
+        }
     }
 }
