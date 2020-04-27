@@ -309,5 +309,20 @@ namespace GoPractice.MyUtil
         {
             return str.Split(" | ")[0];
         }
+
+        private static int GetWkd(string jpWkd)
+        {
+            return jpWkd switch
+            {
+                "日曜日" => 7,
+                "月曜日" => 1,
+                "火曜日" => 2,
+                "水曜日" => 3,
+                "木曜日" => 4,
+                "金曜日" => 5,
+                "土曜日" => 6,
+                _ => -1,
+            };
+        }
     }
 }
