@@ -314,7 +314,7 @@ namespace GoPractice.MyUtil
         {
             return jpWkd switch
             {
-                "日曜日" => 7,
+                "日曜日" => 0,
                 "月曜日" => 1,
                 "火曜日" => 2,
                 "水曜日" => 3,
