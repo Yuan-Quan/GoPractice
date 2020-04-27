@@ -314,7 +314,7 @@ namespace GoPractice.MyUtil
         {
             return jpWkd switch
             {
-                "日曜日" => 7,
+                "日曜日" => 0,
                 "月曜日" => 1,
                 "火曜日" => 2,
                 "水曜日" => 3,
@@ -323,6 +323,17 @@ namespace GoPractice.MyUtil
                 "土曜日" => 6,
                 _ => -1,
             };
+        }
+
+        private static DateTime GetLastFirstDate()
+        {
+            
+        }
+
+        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        {
+            int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
+            return dt.AddDays(-1 * diff).Date;
         }
     }
 }
