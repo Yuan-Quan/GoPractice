@@ -299,5 +299,10 @@ namespace GoPractice.MyUtil
             Console.WriteLine("File Write Succeed!!");
             Console.ForegroundColor = preForegroundColor;
         }
+
+        private static bool IsRow(string str)
+        {
+            return str.Contains(" | ");
+        }
     }
 }
