@@ -172,6 +172,25 @@ namespace GoPractice.MyUtil
             };
         }
 
+        private static int StringToMonth(string month)
+        {
+            return month switch
+            {
+                "Jan." => 1,
+                "Feb." => 2,
+                "Mar." => 3,
+                "Apr." => 4,
+                "May" => 5,
+                "June" => 6,
+                "July" => 7,
+                "Aug." => 8,
+                "Sept." => 9,
+                "Oct." => 10,
+                "Nov" => 11,
+                "Dec." => 12,
+                _ => -1,
+            };
+        }
         /// <summary>
         /// get the text info of checkbox
         /// </summary>
@@ -325,15 +344,67 @@ namespace GoPractice.MyUtil
             };
         }
 
-        private static DateTime GetLastFirstDate()
+        private static string WkdToString(int DayOfWeek)
         {
-            
+            return DayOfWeek switch
+            {
+                0 => "日曜日",
+                1 =>"月曜日" ,
+                2 =>"火曜日" ,
+                3 =>"水曜日" ,
+                4 =>"木曜日" ,
+                5 =>"金曜日" ,
+                6 =>"土曜日" ,
+                _ => "err",
+            };
+        }
+
+        public static DateTime GetLastFirstDate()
+        {
+            var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            for (int i = s.Count - 1; i >= 0; i--)
+            {
+                if(s[i].Contains("$From")||s[i].Contains("$to"))
+                {
+                    return LineToDt(s[i]);
+                }else
+                {
+                    continue;
+                }
+            }
+            throw new Exception("No latest date found in README");
         }
 
         public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
         {
             int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
             return dt.AddDays(-1 * diff).Date;
+        }
+
+        public static DateTime LineToDt(string str)
+        {
+            var date = str.Substring(str.IndexOf("$From")+6, (str.IndexOf("$to")-str.IndexOf("$From")-6));
+            return(DtStrToDt(date));
+        }
+
+        public static DateTime DtStrToDt(string str)
+        {
+            var month = str.Substring(0,str.IndexOfAny("0123456789".ToCharArray()));
+            var str1 = str.Substring(str.IndexOfAny("0123456789".ToCharArray()), str.Length-str.IndexOfAny("0123456789".ToCharArray()));
+            var day = str1.Split(".")[0];
+            var year = str1.Split(".")[1];
+
+            var m = StringToMonth(month);
+            Int32.TryParse(day, out int d);
+            Int32.TryParse(year, out int y);
+
+            return new DateTime(y, m, d);
+        } 
+        
+        public static string GenerateAListRow(string date, string path)
+        {
+            throw new NotImplementedException();
+            return "__[Done](/src/record/Apr18.2020.md)__";
         }
     }
 }
