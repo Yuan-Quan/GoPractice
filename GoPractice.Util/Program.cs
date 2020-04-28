@@ -12,10 +12,12 @@ namespace GoPracticeCli
         static void Startup()
         {
             //MyUtil.ReadAllSettings();
+
         }
         static int Main(string[] args)
         {
             Startup();
+            System.Console.WriteLine(MyUtil.GetLastFirstDate().ToShortDateString());
             //var m = new MainEntry();
             //m.EditFile();
             return new AppRunner<MainEntry>()
