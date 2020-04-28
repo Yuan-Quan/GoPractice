@@ -172,6 +172,25 @@ namespace GoPractice.MyUtil
             };
         }
 
+        private static int StringToMonth(string month)
+        {
+            return month switch
+            {
+                "Jan." => 1,
+                "Feb." => 2,
+                "Mar." => 3,
+                "Apr." => 4,
+                "May" => 5,
+                "June" => 6,
+                "July" => 7,
+                "Aug." => 8,
+                "Sept." => 9,
+                "Oct." => 10,
+                "Nov" => 11,
+                "Dec." => 12,
+                _ => -1,
+            };
+        }
         /// <summary>
         /// get the text info of checkbox
         /// </summary>
@@ -330,7 +349,10 @@ namespace GoPractice.MyUtil
             var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
             for (int i = s.Count - 1; i >= 0; i--)
             {
-                
+                if(s[i].Contains("$From")||s[i].Contains("$to"))
+                {
+                    return Recog(s[i]);
+                }
             }
         }
 
@@ -339,5 +361,18 @@ namespace GoPractice.MyUtil
             int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
             return dt.AddDays(-1 * diff).Date;
         }
+
+        public static DateTime Recog(string str)
+        {
+            var Date1 = str.Substring(str.IndexOf("$From")+4, (str.IndexOf("$to")-str.IndexOf("$From")+4));
+            var Date2 = str.Substring(str.IndexOf("$to")+2);
+
+        }
+
+        public static DateTime DtStrToDt(string str)
+        {
+            var month = str.Substring(0,str.in)
+        } 
+        
     }
 }
