@@ -344,6 +344,21 @@ namespace GoPractice.MyUtil
             };
         }
 
+        private static string WkdToString(int DayOfWeek)
+        {
+            return DayOfWeek switch
+            {
+                0 => "日曜日",
+                1 =>"月曜日" ,
+                2 =>"火曜日" ,
+                3 =>"水曜日" ,
+                4 =>"木曜日" ,
+                5 =>"金曜日" ,
+                6 =>"土曜日" ,
+                _ => "err",
+            };
+        }
+
         public static DateTime GetLastFirstDate()
         {
             var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
@@ -386,5 +401,10 @@ namespace GoPractice.MyUtil
             return new DateTime(y, m, d);
         } 
         
+        public static string GenerateAListRow(string date, string path)
+        {
+            throw new NotImplementedException();
+            return "__[Done](/src/record/Apr18.2020.md)__";
+        }
     }
 }
