@@ -327,7 +327,11 @@ namespace GoPractice.MyUtil
 
         private static DateTime GetLastFirstDate()
         {
-            
+            var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            for (int i = s.Count - 1; i >= 0; i--)
+            {
+                
+            }
         }
 
         public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
