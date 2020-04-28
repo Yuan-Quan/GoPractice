@@ -364,7 +364,7 @@ namespace GoPractice.MyUtil
             var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
             for (int i = s.Count - 1; i >= 0; i--)
             {
-                if(s[i].Contains("$From")||s[i].Contains("$to"))
+                if(s[i].Contains("From")||s[i].Contains("to"))
                 {
                     return LineToDt(s[i]);
                 }else
@@ -383,7 +383,7 @@ namespace GoPractice.MyUtil
 
         public static DateTime LineToDt(string str)
         {
-            var date = str.Substring(str.IndexOf("$From")+6, (str.IndexOf("$to")-str.IndexOf("$From")-6));
+            var date = str.Substring(str.IndexOf("From")+5, (str.IndexOf("to")-str.IndexOf("From")-5));
             return(DtStrToDt(date));
         }
 
