@@ -67,7 +67,7 @@ __金曜日__ | __[Done](/src/record/Apr18.2020.md)__
 __土曜日__ | lll
 
 
-#### April 28, 2020 to May 5, 2020
+#### From Apr.28.2020 to May.5.2020
 
 First Header | Second Header
 ------------ | -------------

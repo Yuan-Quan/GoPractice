@@ -321,15 +321,21 @@ namespace GoPractice.MyUtil
 
         private static bool IsRow(string str)
         {
-            return str.Contains(" | ");
+            return str.Contains(" | ")&&(!(str.Contains("------------")||str.Contains("Header")));
         }
 
         private static string GetRowInfo(string str)
         {
-            return str.Split(" | ")[0];
+            return str.Split(" | ")[1];
         }
 
-        private static int GetWkd(string jpWkd)
+        private static string GetRowWkd(string str)
+        {
+            return (str.Split(" | ")[0]).Substring(2,3);
+        }
+
+
+        private static int StringToWkd(string jpWkd)
         {
             return jpWkd switch
             {
@@ -359,7 +365,7 @@ namespace GoPractice.MyUtil
             };
         }
 
-        public static DateTime GetLastFirstDate()
+        public static DateTime GetLatestDate()
         {
             var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
             for (int i = s.Count - 1; i >= 0; i--)
@@ -400,11 +406,58 @@ namespace GoPractice.MyUtil
 
             return new DateTime(y, m, d);
         } 
-        
-        public static string GenerateAListRow(string date, string path)
+
+        public static string GenerateAListRow(string jpWkd, string path)
         {
-            throw new NotImplementedException();
-            return "__[Done](/src/record/Apr18.2020.md)__";
+            return $"{jpWkd} | __[Done](/src/record/{path})__";
+        }
+
+        //will return the corresponding line of date in README
+        public static int GetLineOfDate(DateTime dt)
+        {
+            var firstDay = StartOfWeek(dt, DayOfWeek.Sunday);
+            var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            var lineOfWkStart = -1;
+            for (int i = s.Count - 1; i >= 0; i--)
+            {
+                if(s[i].Contains("From")||s[i].Contains("to"))
+                {
+                    if(LineToDt(s[i])==firstDay){
+                        lineOfWkStart = i+1;
+                        break;
+                    }else
+                    {
+                        continue;
+                    }
+                }
+            }
+            if (lineOfWkStart == -1)
+            {
+                System.Console.WriteLine();
+                System.Console.WriteLine("No required date in README.md\nwill creat it");
+                throw new NotImplementedException();
+            }
+
+            //System.Console.WriteLine(lineOfWkStart);
+
+            int dayOffset = -1;
+            DateTime tempDt;
+            for (int i = lineOfWkStart; i <= lineOfWkStart+10; i++)
+            {
+                if (IsRow(s[i]))
+                {
+                    dayOffset = StringToWkd(GetRowWkd(s[i]));
+                }
+                tempDt = firstDay.AddDays(dayOffset);
+                if (tempDt.Equals(dt))
+                {
+                    return i+1;
+                }else
+                {
+                    continue;
+                }
+            }
+            throw new Exception("DATE NO FOUND!!");
         }
     }
 }
