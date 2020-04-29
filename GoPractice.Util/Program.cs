@@ -20,7 +20,7 @@ namespace GoPracticeCli
             //System.Console.WriteLine(MyUtil.GetLastFirstDate().ToShortDateString());
             //var m = new MainEntry();
             //m.EditFile();
-            System.Console.WriteLine(MyUtil.GetLineOfDate(new DateTime(2020, 4, 20)));
+            //System.Console.WriteLine(MyUtil.GetLineOfDate(new DateTime(2020, 4, 20)));
             return new AppRunner<MainEntry>()
             .UseDefaultMiddleware()
             .Run(args);
