@@ -7,6 +7,13 @@ using System.Text;
 
 namespace GoPractice.MyUtil
 {
+    public enum FileType
+    {
+        audio,
+        image,
+        video
+    }
+
     public class Setting
     {
         public Setting(string key, string value,string description)
@@ -23,6 +30,17 @@ namespace GoPractice.MyUtil
 
     public static class MyUtil
     {
+
+        public static FileType GetFileType(string path)
+        {
+            string extName = path.Substring(path.LastIndexOf('.'), path.Length - 1 - path.LastIndexOf('.'));
+            switch (file.)
+            {
+                default:
+                    break;
+            }
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// get settings!!
@@ -313,6 +331,7 @@ namespace GoPractice.MyUtil
                 foreach (string line in ls)
                     outputFile.WriteLine(line);
             }
+            Console.WriteLine();
             var preForegroundColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("File Write Succeed!!");
