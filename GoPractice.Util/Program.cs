@@ -130,13 +130,7 @@ namespace GoPracticeCli
                 GenerateReport();
 
                 return;
-            }
-
-            void LinkAReport(string path, DateTime dt)
-            {
-                
-            }
-            
+            }            
 
             //Delete duplicate file
             void DeleteExist()
@@ -410,5 +404,21 @@ namespace GoPracticeCli
             }
 
         }
+
+        [Command(Name = "link",
+        Usage = "link [file name] [date]",
+        Description = "generate link to report in README",
+        ExtendedHelpText = "-d to set date")]
+        void LinkAReport(
+            [Option(LongName = "file", ShortName = "f",
+            Description = "file you want to link")]
+            string file = null,
+            [Option(LongName = "date", ShortName = "d",
+            Description = "coreesponding date of record file")]
+            string date = null
+        )
+            {
+                throw new NotImplementedException();
+            }
     }
 }
