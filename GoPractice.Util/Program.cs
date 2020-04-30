@@ -418,6 +418,15 @@ namespace GoPracticeCli
             string date = null
         )
             {
+                System.Console.WriteLine();
+                if (file == null)
+                {
+                    System.Console.WriteLine("No file specified, will use selected file:");
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    System.Console.WriteLine(MyUtil.ReadSetting("WorkingOn").Split(',')[0]);
+                    Console.ForegroundColor = preForegroundColor;
+                }
                 throw new NotImplementedException();
             }
     }
