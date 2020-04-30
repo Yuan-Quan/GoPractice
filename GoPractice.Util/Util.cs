@@ -329,7 +329,7 @@ public enum FileType
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, fileName)))
             {
                 foreach (string line in ls)
-                    outputFile.WriteLine(line);
+                outputFile.WriteLine(line);
             }
             Console.WriteLine();
             var preForegroundColor = Console.ForegroundColor;
