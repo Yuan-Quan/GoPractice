@@ -132,6 +132,12 @@ namespace GoPracticeCli
                 return;
             }
 
+            void LinkAReport(string path, DateTime dt)
+            {
+                
+            }
+            
+
             //Delete duplicate file
             void DeleteExist()
             {
