@@ -28,7 +28,9 @@ Things todo within 40 hours:
 
 ### Have you practiced today? Sign here
 
-#### April 5, 2020 to April 11, 2020
+<!--StarOfPunch-->
+
+#### From Apr.5.2020 to Apr.11.2020
 
 First Header | Second Header
 ------------ | -------------
@@ -40,7 +42,7 @@ __木曜日__ | __[Done](/src/record/Apr9.2020.md)__
 __金曜日__ | __[Done](/src/record/Apr10.2020.md)__
 __土曜日__ | __PausedForExam__
   
-#### April 12, 2020 to April 19, 2020
+#### From Apr.12.2020 to Apr.18.2020
 
 First Header | Second Header
 ------------ | -------------
@@ -52,15 +54,27 @@ __木曜日__ | __[Done](/src/record/Apr16.2020.md)__
 __金曜日__ | __[Done](/src/record/Apr17.2020.md)__
 __土曜日__ | __[Done](/src/record/Apr18.2020.md)__
 
-#### April 20, 2020 to April 27, 2020
+#### From Apr.19.2020 to Apr.25.2020
 
 First Header | Second Header
 ------------ | -------------
 __日曜日__ | 
 __月曜日__ | 
 __火曜日__ |  My keyboard broken...
-__水曜日__ | 
+__水曜日__ | __[Done](/src/record/Apr18.2020.md)__
+__木曜日__ | __[Done](/src/record/Apr18.2020.md)__
+__金曜日__ | __[Done](/src/record/Apr18.2020.md)__
+__土曜日__ | lll
+
+
+#### From Apr.28.2020 to May.5.2020
+
+First Header | Second Header
+------------ | -------------
+__日曜日__ | 
+__月曜日__ | 
+__火曜日__ | 
+__水曜日__ |
 __木曜日__ | 
 __金曜日__ | 
 __土曜日__ | 
-
