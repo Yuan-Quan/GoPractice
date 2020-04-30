@@ -17,13 +17,10 @@ namespace GoPracticeCli
         static int Main(string[] args)
         {
             Startup();
-            //System.Console.WriteLine(MyUtil.GetLastFirstDate().ToShortDateString());
-            //var m = new MainEntry();
-            //m.EditFile();
-            //System.Console.WriteLine(MyUtil.GetLineOfDate(new DateTime(2020, 4, 20)));
             return new AppRunner<MainEntry>()
-            .UseDefaultMiddleware()
-            .Run(args);
+                .UseDefaultMiddleware()
+                .Run(args);
+            
             //return 0;
         }
     }
@@ -447,7 +444,7 @@ namespace GoPracticeCli
                 {
                     bool f1, f2, f3;
                     bool isDateSetFaild;
-                    bool isTryPraseFaild;
+                    //bool isTryPraseFaild;
                     while (true)
                     {
                         isDateSetFaild= false;
