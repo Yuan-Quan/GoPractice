@@ -334,7 +334,7 @@ namespace GoPracticeCli
                         Console.WriteLine("You must specify a file path when attach a file");
                         Console.ForegroundColor = preForegroundColor;
                     }
-                    AttachFile(, "", "");
+                    //AttachFile(, "", "");
                     break;
                 default:
                 System.Console.WriteLine();
@@ -409,7 +409,7 @@ namespace GoPracticeCli
         Usage = "link [file name] [date]",
         Description = "generate link to report in README",
         ExtendedHelpText = "-d to set date")]
-        void LinkAReport(
+        public void LinkAReport(
             [Option(LongName = "file", ShortName = "f",
             Description = "file you want to link")]
             string file = null,
@@ -418,6 +418,7 @@ namespace GoPracticeCli
             string date = null
         )
             {
+                DateTime dt = DateTime.Today;
                 System.Console.WriteLine();
                 if (file == null)
                 {
@@ -426,7 +427,76 @@ namespace GoPracticeCli
                     Console.ForegroundColor = ConsoleColor.Green;
                     System.Console.WriteLine(MyUtil.ReadSetting("WorkingOn").Split(',')[0]);
                     Console.ForegroundColor = preForegroundColor;
+                    file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
                 }
+                System.Console.WriteLine();
+                bool isGetDateFailed = false;
+                System.Console.WriteLine("Try to get date automaticly");
+                try
+                {
+                    dt = MyUtil.DtStrToDt(file);
+                }catch{
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine("Cannot get date,");
+                    Console.ForegroundColor = preForegroundColor;
+                    isGetDateFailed = true;
+                }
+
+                if(isGetDateFailed)
+                {
+                    bool f1, f2, f3;
+                    bool isDateSetFaild;
+                    bool isTryPraseFaild;
+                    while (true)
+                    {
+                        isDateSetFaild= false;
+                        System.Console.WriteLine();
+                        System.Console.WriteLine("Enter the date, yyyy/mm/dd");
+                        System.Console.Write("> ");
+                        var entry = Console.ReadLine();
+                        try
+                        {
+                            Int32.TryParse(entry.Split('/')[0], out int ty);
+                            Int32.TryParse(entry.Split('/')[1], out int tm);
+                            Int32.TryParse(entry.Split('/')[2], out int td);
+                        }
+                        catch
+                        {
+                            System.Console.WriteLine("Format err, try again");
+                            continue;
+                        }
+
+                        f1 = Int32.TryParse(entry.Split('/')[0], out int y);
+                        f2 = Int32.TryParse(entry.Split('/')[1], out int m);
+                        f3 = Int32.TryParse(entry.Split('/')[2], out int d);
+                        
+                        if (f1&&f2&&f3)
+                        {
+                            try
+                            {
+                                dt = new DateTime(y,m,d);
+                            }catch
+                            {
+                                isDateSetFaild= true;
+                            }  
+                        }else
+                        {
+                            System.Console.WriteLine("Format err, try again");
+                            continue;
+                        }
+
+                        if (isDateSetFaild)
+                        {
+                            System.Console.WriteLine("Date incorrect!!");
+                            continue;
+                        }
+
+                        break;
+                    }
+                }
+
+                System.Console.WriteLine(dt.ToShortDateString());
                 throw new NotImplementedException();
             }
     }
