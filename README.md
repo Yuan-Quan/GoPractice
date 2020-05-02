@@ -74,7 +74,7 @@ First Header | Second Header
 __日曜日__ | 
 __月曜日__ | 
 __火曜日__ | 
-__水曜日__ |
+__水曜日__ | practice for rehearsals
 __木曜日__ | 
 __金曜日__ | 
 __土曜日__ | 
