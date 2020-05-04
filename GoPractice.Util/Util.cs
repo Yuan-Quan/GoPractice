@@ -34,11 +34,12 @@ public enum FileType
         public static FileType GetFileType(string path)
         {
             string extName = path.Substring(path.LastIndexOf('.'), path.Length - 1 - path.LastIndexOf('.'));
-            //switch ()
-            //{
-              //  default:
-                //    break;
-            //}
+            /*
+             * switch (file.)
+            {
+                default:
+                    break;
+            }*/
             throw new NotImplementedException();
         }
         
