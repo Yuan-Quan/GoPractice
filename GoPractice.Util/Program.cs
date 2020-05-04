@@ -340,7 +340,7 @@ namespace GoPracticeCli
                         Console.WriteLine("You must specify a file path when attach a file");
                         Console.ForegroundColor = preForegroundColor;
                     }
-                    AttachFile(, "", "");
+                    //AttachFile(, "", "");
                     break;
                 default:
                 System.Console.WriteLine();
