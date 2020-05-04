@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GoPractice.MyUtil
 {
-    public enum FileType
+public enum FileType
     {
         audio,
         image,
@@ -30,7 +30,7 @@ namespace GoPractice.MyUtil
 
     public static class MyUtil
     {
-
+        
         public static FileType GetFileType(string path)
         {
             string extName = path.Substring(path.LastIndexOf('.'), path.Length - 1 - path.LastIndexOf('.'));
@@ -42,7 +42,7 @@ namespace GoPractice.MyUtil
             }*/
             throw new NotImplementedException();
         }
-
+        
         /// <summary>
         /// get settings!!
         /// </summary>
@@ -330,7 +330,7 @@ namespace GoPractice.MyUtil
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, fileName)))
             {
                 foreach (string line in ls)
-                    outputFile.WriteLine(line);
+                outputFile.WriteLine(line);
             }
             Console.WriteLine();
             var preForegroundColor = Console.ForegroundColor;
