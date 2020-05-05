@@ -76,5 +76,5 @@ __月曜日__ |
 __火曜日__ | 
 __水曜日__ | practice for rehearsals
 __木曜日__ | practice for rehearsals
-__金曜日__ | 
+__金曜日__ | rehearsaled
 __土曜日__ | 
