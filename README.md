@@ -78,7 +78,7 @@ __木曜日__ | practice for rehearsals
 __金曜日__ | rehearsaled
 __土曜日__ | maybe I should study more？
 
-#### From Apr.28.2020 to May.5.2020
+#### From May.6.2020 to May.12.2020
 
 First Header | Second Header
 ------------ | -------------
