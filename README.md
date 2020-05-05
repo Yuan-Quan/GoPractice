@@ -77,4 +77,4 @@ __火曜日__ |
 __水曜日__ | practice for rehearsals
 __木曜日__ | practice for rehearsals
 __金曜日__ | rehearsaled
-__土曜日__ | 
+__土曜日__ | maybe I should study more？
