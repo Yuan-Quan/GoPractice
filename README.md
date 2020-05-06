@@ -82,8 +82,8 @@ __土曜日__ | maybe I should study more？
 
 First Header | Second Header
 ------------ | -------------
-__日曜日__ | done
-__月曜日__ | some ear training
+__日曜日__ | 
+__月曜日__ | 
 __火曜日__ | 
 __水曜日__ | 
 __木曜日__ |
