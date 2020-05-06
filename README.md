@@ -82,7 +82,7 @@ __土曜日__ | maybe I should study more？
 
 First Header | Second Header
 ------------ | -------------
-__日曜日__ | 
+__日曜日__ | __[Done](/src/record/May.6.2020.md)__
 __月曜日__ | 
 __火曜日__ | 
 __水曜日__ | 
