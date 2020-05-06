@@ -28,7 +28,7 @@ Things todo within 40 hours:
 
 ### Have you practiced today? Sign here
 
-<!--StarOfPunch-->
+<!--StartOfPunch-->
 
 #### From Apr.5.2020 to Apr.11.2020
 
