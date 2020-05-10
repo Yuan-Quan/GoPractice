@@ -330,6 +330,9 @@ namespace GoPracticeCli
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("You must specify a file path when attach a file");
                         Console.ForegroundColor = preForegroundColor;
+                        System.Console.WriteLine(
+                            "\nYou can add '-f ' then drag and dorp the file into your terminal!!"
+                        );
                     }
                     if(!File.Exists(fileAtch))
                     {
