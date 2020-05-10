@@ -382,7 +382,7 @@ namespace GoPracticeCli
                 }
                 File.Copy(pathOrg, pathDst);
                 AddAString("  ");
-                AddAString($"[__AUDIO__](../audio/{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+                AddAString($"[__AUDIO__](..{pathDst.Substring(pathDst.IndexOf("src")+3)})");
             }
 
             void AttachImage(string pathOrg, string pathDst)
@@ -397,7 +397,7 @@ namespace GoPracticeCli
                 }
                 File.Copy(pathOrg, pathDst);
                 AddAString("  ");
-                AddAString($"![altText](../audio/{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+                AddAString($"![altText](..{pathDst.Substring(pathDst.IndexOf("src")+3)})");
             }
 
             void AttachVideo(string pathOrg, string pathDst)
@@ -412,7 +412,7 @@ namespace GoPracticeCli
                 }
                 File.Copy(pathOrg, pathDst);
                 AddAString("  ");
-                AddAString($"[__AUDIO__](../audio/{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+                AddAString($"[__AUDIO__](..{pathDst.Substring(pathDst.IndexOf("src")+3)})");
             }
             
             void DeleteLastString()
