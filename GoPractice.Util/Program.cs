@@ -367,6 +367,14 @@ namespace GoPracticeCli
             void AttachAudio(string pathOrg, string pathDst)
             {
                 File.Copy(pathOrg, pathDst);
+                if (File.Exists(pathDst))
+                {
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("File already existed!! will abort this action");
+                    Console.ForegroundColor = preForegroundColor;
+                    return;
+                }
                 AddAString("  ");
                 AddAString($"[__AUDIO__](../audio/{pathDst.Substring(pathDst.IndexOf("src")+3)})");
             }
