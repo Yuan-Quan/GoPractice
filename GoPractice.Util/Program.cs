@@ -11,13 +11,12 @@ namespace GoPracticeCli
     {
         static void Startup()
         {
-            //MyUtil.ReadAllSettings();
-            var m = new MainEntry();
-            m.EditFile("attach", "/home/reimu/Music/Rip/DualInsomiNa/Phantasm/Track01_TRacks.wav");
+            System.Console.WriteLine("gpcli: ");
+            System.Console.WriteLine();
         }
         static int Main(string[] args)
         {
-            //Startup();
+            Startup();
             return new AppRunner<MainEntry>()
                 .UseDefaultMiddleware()
                 .Run(args);
