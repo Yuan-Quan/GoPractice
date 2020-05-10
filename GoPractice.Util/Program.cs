@@ -12,11 +12,12 @@ namespace GoPracticeCli
         static void Startup()
         {
             //MyUtil.ReadAllSettings();
-
+            var m = new MainEntry();
+            m.EditFile("attach", "/home/reimu/Music/Rip/DualInsomiNa/Phantasm/Track01_TRacks.wav");
         }
         static int Main(string[] args)
         {
-            Startup();
+            //Startup();
             return new AppRunner<MainEntry>()
                 .UseDefaultMiddleware()
                 .Run(args);
@@ -331,18 +332,53 @@ namespace GoPracticeCli
                         Console.WriteLine("You must specify a file path when attach a file");
                         Console.ForegroundColor = preForegroundColor;
                     }
-                    //AttachFile(, "", "");
+                    if(!File.Exists(fileAtch))
+                    {
+                        var preForegroundColor = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("No file found in given path");
+                        Console.ForegroundColor = preForegroundColor;
+                        return;
+                    }
+                    AttachFile(fileAtch);
                     break;
                 default:
                 System.Console.WriteLine();
                 System.Console.WriteLine("unknow opration");
                 break;
             }
-            void AttachFile(string fileType, string path)
+
+            void AttachFile(string path)
             {
-                
+                var fileType = MyUtil.GetFileType(path);
+                switch (fileType)
+                {
+                    case FileType.audio:
+                        AttachAudio(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/audio/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
+                        break;
+                    case FileType.video:
+                        throw new NotImplementedException("");
+                        AttachVideo(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/video/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
+                        break;
+                    default:
+                        return;
+                }
             }
 
+            void AttachAudio(string pathOrg, string pathDst)
+            {
+                File.Copy(pathOrg, pathDst);
+                AddAString("  ");
+                AddAString($"[__AUDIO__](../audio/{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+            }
+
+            void AttachVideo(string pathOrg, string pathDst)
+            {
+                File.Copy(pathOrg, pathDst);
+                AddAString("  ");
+                AddAString($"[__AUDIO__](../audio/{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+            }
+            
             void DeleteLastString()
             {
                 var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/" + file));
