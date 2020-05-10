@@ -11,8 +11,8 @@ namespace GoPracticeCli
     {
         static void Startup()
         {
-            //MyUtil.ReadAllSettings();
-
+            System.Console.WriteLine("gpcli: ");
+            System.Console.WriteLine();
         }
         static int Main(string[] args)
         {
@@ -330,19 +330,91 @@ namespace GoPracticeCli
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("You must specify a file path when attach a file");
                         Console.ForegroundColor = preForegroundColor;
+                        System.Console.WriteLine(
+                            "\nYou can add '-f ' then drag and dorp the file into your terminal!!"
+                        );
                     }
-                    //AttachFile(, "", "");
+                    if(!File.Exists(fileAtch))
+                    {
+                        var preForegroundColor = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("No file found in given path");
+                        Console.ForegroundColor = preForegroundColor;
+                        return;
+                    }
+                    AttachFile(fileAtch);
                     break;
                 default:
                 System.Console.WriteLine();
                 System.Console.WriteLine("unknow opration");
                 break;
             }
-            void AttachFile(string fileType, string path)
+
+            void AttachFile(string path)
             {
-                
+                var fileType = MyUtil.GetFileType(path);
+                switch (fileType)
+                {
+                    case FileType.image:
+                        AttachImage(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/images/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
+                        break;
+                    case FileType.audio:
+                        AttachAudio(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/audio/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
+                        break;
+                    case FileType.video:
+                        throw new NotImplementedException("");
+                        AttachVideo(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/video/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
+                        break;
+                    default:
+                        return;
+                }
             }
 
+            void AttachAudio(string pathOrg, string pathDst)
+            {
+                if (File.Exists(pathDst))
+                {
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("File already existed!! will abort this action");
+                    Console.ForegroundColor = preForegroundColor;
+                    return;
+                }
+                File.Copy(pathOrg, pathDst);
+                AddAString("  ");
+                AddAString($"[__AUDIO__](..{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+            }
+
+            void AttachImage(string pathOrg, string pathDst)
+            {
+                if (File.Exists(pathDst))
+                {
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("File already existed!! will abort this action");
+                    Console.ForegroundColor = preForegroundColor;
+                    return;
+                }
+                File.Copy(pathOrg, pathDst);
+                AddAString("  ");
+                AddAString($"![altText](..{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+            }
+
+            void AttachVideo(string pathOrg, string pathDst)
+            {
+                if (File.Exists(pathDst))
+                {
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("File already existed!! will abort this action");
+                    Console.ForegroundColor = preForegroundColor;
+                    return;
+                }
+                File.Copy(pathOrg, pathDst);
+                AddAString("  ");
+                AddAString($"[__AUDIO__](..{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+            }
+            
             void DeleteLastString()
             {
                 var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/" + file));

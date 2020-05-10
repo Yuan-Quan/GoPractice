@@ -7,7 +7,7 @@ using System.Text;
 
 namespace GoPractice.MyUtil
 {
-public enum FileType
+    public enum FileType
     {
         audio,
         image,
@@ -30,17 +30,74 @@ public enum FileType
 
     public static class MyUtil
     {
-        
+        private static byte[] ConvertStringToByteArray(string data)
+        {
+            return(new System.Text.UnicodeEncoding()).GetBytes(data);
+        }
+
+        private static System.IO.FileStream GetFileStream(string pathName)
+        {
+            return(new System.IO.FileStream(pathName, System.IO.FileMode.Open, 
+                        System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite));
+        }
+
+
+        public static string GetSHA1Hash(string pathName)
+        {
+            string strResult = "";
+            string strHashData = "";
+
+            byte[] arrbytHashValue;
+            System.IO.FileStream oFileStream = null;
+
+            System.Security.Cryptography.SHA1CryptoServiceProvider oSHA1Hasher=
+                        new System.Security.Cryptography.SHA1CryptoServiceProvider();
+
+            try
+            {
+                oFileStream = GetFileStream(pathName);
+                arrbytHashValue = oSHA1Hasher.ComputeHash(oFileStream);
+                oFileStream.Close();
+
+                strHashData = System.BitConverter.ToString(arrbytHashValue);
+                strHashData = strHashData.Replace("-", "");
+                strResult = strHashData;
+            }
+            catch(System.Exception ex)
+            {
+                System.Console.WriteLine(ex.Message);
+            }
+
+            return(strResult);
+        }
+
+
         public static FileType GetFileType(string path)
         {
-            string extName = path.Substring(path.LastIndexOf('.'), path.Length - 1 - path.LastIndexOf('.'));
-            /*
-             * switch (file.)
+            if(!path.Contains('.'))
             {
-                default:
+                throw new Exception("File type not supported");
+            }
+            string extName = path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'));
+            switch (extName)
+            {
+                case ".wav":
+                case ".mp3":
+                case ".midi":
+                    return FileType.audio;
                     break;
-            }*/
-            throw new NotImplementedException();
+                case ".png":
+                case ".jpg":
+                    return FileType.image;
+                    break;
+                case ".mp4":
+                case ".avi":
+                    return FileType.video;
+                    break;
+                default:
+                throw new Exception("File type not supported");
+                    break;
+            }
         }
         
         /// <summary>
