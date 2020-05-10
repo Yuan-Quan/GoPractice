@@ -352,6 +352,9 @@ namespace GoPracticeCli
                 var fileType = MyUtil.GetFileType(path);
                 switch (fileType)
                 {
+                    case FileType.image:
+                        AttachImage(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/images/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
+                        break;
                     case FileType.audio:
                         AttachAudio(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/audio/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
                         break;
@@ -366,7 +369,6 @@ namespace GoPracticeCli
 
             void AttachAudio(string pathOrg, string pathDst)
             {
-                File.Copy(pathOrg, pathDst);
                 if (File.Exists(pathDst))
                 {
                     var preForegroundColor = Console.ForegroundColor;
@@ -375,12 +377,36 @@ namespace GoPracticeCli
                     Console.ForegroundColor = preForegroundColor;
                     return;
                 }
+                File.Copy(pathOrg, pathDst);
                 AddAString("  ");
                 AddAString($"[__AUDIO__](../audio/{pathDst.Substring(pathDst.IndexOf("src")+3)})");
             }
 
+            void AttachImage(string pathOrg, string pathDst)
+            {
+                if (File.Exists(pathDst))
+                {
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("File already existed!! will abort this action");
+                    Console.ForegroundColor = preForegroundColor;
+                    return;
+                }
+                File.Copy(pathOrg, pathDst);
+                AddAString("  ");
+                AddAString($"![altText](../audio/{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+            }
+
             void AttachVideo(string pathOrg, string pathDst)
             {
+                if (File.Exists(pathDst))
+                {
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("File already existed!! will abort this action");
+                    Console.ForegroundColor = preForegroundColor;
+                    return;
+                }
                 File.Copy(pathOrg, pathDst);
                 AddAString("  ");
                 AddAString($"[__AUDIO__](../audio/{pathDst.Substring(pathDst.IndexOf("src")+3)})");
