@@ -13,6 +13,9 @@ namespace GoPracticeCli
         {
             System.Console.WriteLine("gpcli: ");
             System.Console.WriteLine();
+            //var m = new MainEntry();
+            //m.CreatNewReport("2020/5/11");
+            MyUtil.GenerateAWeek(92, DateTime.Now);
         }
         static int Main(string[] args)
         {
@@ -44,13 +47,19 @@ namespace GoPracticeCli
             [Option(ShortName = "d")]string date = null
             )
         {
+            DateTime dateTime;
+            bool isGetDateFailed;
             if (date == null)
             {
                 Console.WriteLine("No date specifyed, using current date");
                 //maybe print the current timezone 
-                date = MyUtil.GetDateString(DateTime.Now);
+                dateTime = DateTime.Now;
+            }else
+            {
+                dateTime = MyUtil.DtTryParse(date);
             }
             
+            date = MyUtil.GetDateString(dateTime);
             Console.WriteLine($"new record will be named {date}.md");
             Console.WriteLine();
             // Get the local time zone and the current local time and year.
@@ -59,6 +68,7 @@ namespace GoPracticeCli
             Console.WriteLine("Your current time zone set to:");
             Console.WriteLine(dataFmt, "UTC offset:", localZone.GetUtcOffset(currentDate));
             Console.WriteLine();
+
 
             if (File.Exists(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md"))
             {
@@ -172,6 +182,13 @@ namespace GoPracticeCli
                 Console.Write($"File {date}.md generated successfully");
                 Console.ForegroundColor = preConsoleColor;
                 Console.WriteLine();
+
+                //doesn't have this week in README
+                if (dateTime.CompareTo(MyUtil.GetLatestDate().AddDays(6))>0)
+                {
+                    System.Console.WriteLine("week out of bound, will creat one");
+                    //MyUtil.GenerateAWeek(dateTime);
+                }
             }
         }
 
@@ -362,7 +379,6 @@ namespace GoPracticeCli
                         AttachAudio(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/audio/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
                         break;
                     case FileType.video:
-                        throw new NotImplementedException("");
                         AttachVideo(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/video/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
                         break;
                     default:

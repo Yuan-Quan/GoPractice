@@ -442,6 +442,7 @@ namespace GoPractice.MyUtil
             };
         }
 
+        
         public static DateTime GetLatestDate()
         {
             var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
@@ -458,13 +459,13 @@ namespace GoPractice.MyUtil
             throw new Exception("No latest date found in README");
         }
 
-        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        private static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
         {
             int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
             return dt.AddDays(-1 * diff).Date;
         }
 
-        public static DateTime LineToDt(string str)
+        private static DateTime LineToDt(string str)
         {
             var date = str.Substring(str.IndexOf("From")+5, (str.IndexOf("to")-str.IndexOf("From")-5));
             return(DtStrToDt(date));
@@ -484,7 +485,7 @@ namespace GoPractice.MyUtil
             return new DateTime(y, m, d);
         } 
 
-        public static string GenerateAListRow(string jpWkd, string path)
+        private static string GenerateAListRow(string jpWkd, string path)
         {
             return $"{jpWkd} | __[Done](/src/record/{path})__";
         }
@@ -535,6 +536,118 @@ namespace GoPractice.MyUtil
                 }
             }
             throw new Exception("DATE NO FOUND!!");
+        }
+
+        private static string GenerateWeekTitle(DateTime s, DateTime e)
+        {
+            return $"#### From {GetDateString(s)} to {GetDateString(e)}";
+        }
+
+        public static void GenerateAWeek(int line, DateTime dt)
+        {
+            var firstDay = StartOfWeek(dt, DayOfWeek.Sunday);
+            var lastDay = firstDay.AddDays(6);
+            var so = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            var sl = new List<string>();
+            var s = new List<string>();
+            for (int i = line -1; i < so.Count-1; i++)
+            {
+                sl.Add(so[i]);
+            }
+            for (int i = 0; i < line-1; i++)
+            {
+                s.Add(so[i]);
+            }
+
+            s.Add("");
+            s.Add(GenerateWeekTitle(firstDay, lastDay));
+            s.Add("");
+            s.Add("First Header | Second Header");
+            s.Add("------------ | -------------");
+            s.Add("__日曜日__ |");
+            s.Add("__月曜日__ |");
+            s.Add("__火曜日__ |");
+            s.Add("__水曜日__ |");
+            s.Add("__木曜日__ |");
+            s.Add("__金曜日__ |");
+            s.Add("__土曜日__ |");
+            foreach (var item in sl)
+            {
+                s.Add(item);
+            }
+            WriteAFile(s, $@"{MyUtil.ReadSetting("path").Split(',')[0]}/", "README.md");
+        }
+
+        public static DateTime DtTryParse(string str)
+        {
+            DateTime dt = DateTime.Now;
+             System.Console.WriteLine();
+                bool isGetDateFailed = false;
+                System.Console.WriteLine("Try to get date automaticly");
+                try
+                {
+                    dt = MyUtil.DtStrToDt(str);
+                }catch{
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine("Cannot get date,");
+                    Console.ForegroundColor = preForegroundColor;
+                    isGetDateFailed = true;
+                }
+                if (!isGetDateFailed)
+                {
+                    return dt;
+                }
+                    bool f1, f2, f3;
+                    bool isDateSetFaild;
+                    //bool isTryPraseFaild;
+                    while (true)
+                    {
+                        isDateSetFaild= false;
+                        System.Console.WriteLine();
+                        System.Console.WriteLine("Enter the date, yyyy/mm/dd");
+                        System.Console.Write("> ");
+                        var entry = Console.ReadLine();
+                        try
+                        {
+                            Int32.TryParse(entry.Split('/')[0], out int ty);
+                            Int32.TryParse(entry.Split('/')[1], out int tm);
+                            Int32.TryParse(entry.Split('/')[2], out int td);
+                        }
+                        catch
+                        {
+                            System.Console.WriteLine("Format err, try again");
+                            continue;
+                        }
+
+                        f1 = Int32.TryParse(entry.Split('/')[0], out int y);
+                        f2 = Int32.TryParse(entry.Split('/')[1], out int m);
+                        f3 = Int32.TryParse(entry.Split('/')[2], out int d);
+                        
+                        if (f1&&f2&&f3)
+                        {
+                            try
+                            {
+                                dt = new DateTime(y,m,d);
+                            }catch
+                            {
+                                isDateSetFaild= true;
+                            }  
+                        }else
+                        {
+                            System.Console.WriteLine("Format err, try again");
+                            continue;
+                        }
+
+                        if (isDateSetFaild)
+                        {
+                            System.Console.WriteLine("Date incorrect!!");
+                            continue;
+                        }
+
+                        break;
+                    }
+                    return dt;
         }
     }
 }

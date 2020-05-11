@@ -66,7 +66,7 @@ __木曜日__ | __[Done](/src/record/Apr18.2020.md)__
 __金曜日__ | __[Done](/src/record/Apr18.2020.md)__
 __土曜日__ | lll
 
-#### From Apr.28.2020 to May.5.2020
+#### From Apr.28.2020 to May5.2020
 
 First Header | Second Header
 ------------ | -------------
@@ -78,7 +78,7 @@ __木曜日__ | practice for rehearsals
 __金曜日__ | rehearsaled
 __土曜日__ | maybe I should study more？
 
-#### From May.6.2020 to May.12.2020
+#### From May6.2020 to May12.2020
 
 First Header | Second Header
 ------------ | -------------
@@ -89,5 +89,3 @@ __水曜日__ |
 __木曜日__ |
 __金曜日__ |
 __土曜日__ | 
-
-<!--EndOfPunch-->
