@@ -13,6 +13,7 @@ namespace GoPracticeCli
         {
             System.Console.WriteLine("gpcli: ");
             System.Console.WriteLine();
+            MyUtil.GenerateAWeek(DateTime.Now);
         }
         static int Main(string[] args)
         {

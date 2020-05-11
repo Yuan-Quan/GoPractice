@@ -442,7 +442,8 @@ namespace GoPractice.MyUtil
             };
         }
 
-        public static DateTime GetLatestDate()
+        
+        private static DateTime GetLatestDate()
         {
             var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
             for (int i = s.Count - 1; i >= 0; i--)
@@ -458,13 +459,13 @@ namespace GoPractice.MyUtil
             throw new Exception("No latest date found in README");
         }
 
-        public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
+        private static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
         {
             int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
             return dt.AddDays(-1 * diff).Date;
         }
 
-        public static DateTime LineToDt(string str)
+        private static DateTime LineToDt(string str)
         {
             var date = str.Substring(str.IndexOf("From")+5, (str.IndexOf("to")-str.IndexOf("From")-5));
             return(DtStrToDt(date));
@@ -484,7 +485,7 @@ namespace GoPractice.MyUtil
             return new DateTime(y, m, d);
         } 
 
-        public static string GenerateAListRow(string jpWkd, string path)
+        private static string GenerateAListRow(string jpWkd, string path)
         {
             return $"{jpWkd} | __[Done](/src/record/{path})__";
         }
@@ -535,6 +536,20 @@ namespace GoPractice.MyUtil
                 }
             }
             throw new Exception("DATE NO FOUND!!");
+        }
+
+        private static string GenerateWeekTitle(DateTime s, DateTime e)
+        {
+            return $"#### From {GetDateString(s)} to {GetDateString(e)}";
+        }
+
+        public static void GenerateAWeek(DateTime dt)
+        {
+            var firstDay = StartOfWeek(dt, DayOfWeek.Sunday);
+            var lastDay = firstDay.AddDays(6);
+            var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            s.Add("");
+            s.Add(GenerateWeekTitle(firstDay, lastDay));
         }
     }
 }
