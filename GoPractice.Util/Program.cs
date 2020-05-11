@@ -68,11 +68,6 @@ namespace GoPracticeCli
             Console.WriteLine(dataFmt, "UTC offset:", localZone.GetUtcOffset(currentDate));
             Console.WriteLine();
 
-            if (dateTime.CompareTo(MyUtil.GetLatestDate().AddDays(6))>0)
-            {
-                System.Console.WriteLine("week out of bound, will creat one");
-                throw new NotImplementedException();
-            }
 
             if (File.Exists(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md"))
             {
@@ -186,6 +181,13 @@ namespace GoPracticeCli
                 Console.Write($"File {date}.md generated successfully");
                 Console.ForegroundColor = preConsoleColor;
                 Console.WriteLine();
+
+                //doesn't have this week in README
+                if (dateTime.CompareTo(MyUtil.GetLatestDate().AddDays(6))>0)
+                {
+                    System.Console.WriteLine("week out of bound, will creat one");
+                    MyUtil.GenerateAWeek(dateTime);
+                }
             }
         }
 
