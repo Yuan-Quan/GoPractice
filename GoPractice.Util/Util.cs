@@ -543,11 +543,22 @@ namespace GoPractice.MyUtil
             return $"#### From {GetDateString(s)} to {GetDateString(e)}";
         }
 
-        public static void GenerateAWeek(DateTime dt)
+        public static void GenerateAWeek(int line, DateTime dt)
         {
             var firstDay = StartOfWeek(dt, DayOfWeek.Sunday);
             var lastDay = firstDay.AddDays(6);
-            var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            var so = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            var sl = new List<string>();
+            var s = new List<string>();
+            for (int i = line -1; i < so.Count-1; i++)
+            {
+                sl.Add(so[i]);
+            }
+            for (int i = 0; i < line-1; i++)
+            {
+                s.Add(so[i]);
+            }
+
             s.Add("");
             s.Add(GenerateWeekTitle(firstDay, lastDay));
             s.Add("");
@@ -560,6 +571,10 @@ namespace GoPractice.MyUtil
             s.Add("__木曜日__ |");
             s.Add("__金曜日__ |");
             s.Add("__土曜日__ |");
+            foreach (var item in sl)
+            {
+                s.Add(item);
+            }
             WriteAFile(s, $@"{MyUtil.ReadSetting("path").Split(',')[0]}/", "README.md");
         }
 

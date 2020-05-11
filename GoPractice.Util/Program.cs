@@ -15,6 +15,7 @@ namespace GoPracticeCli
             System.Console.WriteLine();
             //var m = new MainEntry();
             //m.CreatNewReport("2020/5/11");
+            MyUtil.GenerateAWeek(92, DateTime.Now);
         }
         static int Main(string[] args)
         {
@@ -186,7 +187,7 @@ namespace GoPracticeCli
                 if (dateTime.CompareTo(MyUtil.GetLatestDate().AddDays(6))>0)
                 {
                     System.Console.WriteLine("week out of bound, will creat one");
-                    MyUtil.GenerateAWeek(dateTime);
+                    //MyUtil.GenerateAWeek(dateTime);
                 }
             }
         }
