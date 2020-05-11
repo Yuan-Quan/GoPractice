@@ -512,8 +512,8 @@ namespace GoPractice.MyUtil
             if (lineOfWkStart == -1)
             {
                 System.Console.WriteLine();
-                System.Console.WriteLine("No required date in README.md\nwill creat it");
-                throw new NotImplementedException();
+                System.Console.WriteLine("No required date in README.md");
+                return -1;
             }
 
             //System.Console.WriteLine(lineOfWkStart);

@@ -28,8 +28,6 @@ namespace GoPracticeCli
         }
     }
 
-
-
     public class MainEntry
     {
         //to store the console color when color changes
