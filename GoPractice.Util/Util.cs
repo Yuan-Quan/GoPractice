@@ -485,9 +485,30 @@ namespace GoPractice.MyUtil
             return new DateTime(y, m, d);
         } 
 
-        private static string GenerateAListRow(string jpWkd, string path)
+        public static string GenerateAListRow(string jpWkd, string path)
         {
             return $"{jpWkd} | __[Done](/src/record/{path})__";
+        }
+
+        public static int GetLineToInsert(DateTime dt)
+        {
+            var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            for (int i = 0; i < s.Count; i++)
+            {
+                if(s[i].Contains("From")||s[i].Contains("to"))
+                {
+                    var t =  LineToDt(s[i]);
+                    if (dt.CompareTo(t)<=7)
+                    {
+                        return i+1;
+                    }
+                    continue;
+                }else
+                {
+                    continue;
+                }
+            }
+            throw new Exception("Unknow err");
         }
 
         //will return the corresponding line of date in README
