@@ -11,11 +11,7 @@ namespace GoPracticeCli
     {
         static void Startup()
         {
-            System.Console.WriteLine("gpcli: ");
-            System.Console.WriteLine();
-            //var m = new MainEntry();
-            //m.CreatNewReport("2020/5/11");
-            MyUtil.GenerateAWeek(92, DateTime.Now);
+           
         }
         static int Main(string[] args)
         {
@@ -27,8 +23,6 @@ namespace GoPracticeCli
             //return 0;
         }
     }
-
-
 
     public class MainEntry
     {
@@ -139,7 +133,7 @@ namespace GoPracticeCli
                 return;
             }            
 
-            //Delete duplicate file
+            //to Delete duplicate file
             void DeleteExist()
             {
                 Console.Write($"Will ");
@@ -187,8 +181,12 @@ namespace GoPracticeCli
                 if (dateTime.CompareTo(MyUtil.GetLatestDate().AddDays(6))>0)
                 {
                     System.Console.WriteLine("week out of bound, will creat one");
+                    throw new NotImplementedException();
                     //MyUtil.GenerateAWeek(dateTime);
                 }
+
+                //creat corresponding link in the README
+                LinkAReport(date);
             }
         }
 
@@ -490,16 +488,8 @@ namespace GoPracticeCli
 
         }
 
-        [Command(Name = "link",
-        Usage = "link [file name] [date]",
-        Description = "generate link to report in README",
-        ExtendedHelpText = "-d to set date")]
         public void LinkAReport(
-            [Option(LongName = "file", ShortName = "f",
-            Description = "file you want to link")]
             string file = null,
-            [Option(LongName = "date", ShortName = "d",
-            Description = "coreesponding date of record file")]
             string date = null
         )
             {
@@ -581,8 +571,20 @@ namespace GoPracticeCli
                     }
                 }
 
-                System.Console.WriteLine(dt.ToShortDateString());
-                throw new NotImplementedException();
+                int lineToChange = 0;
+                try
+                {
+                    lineToChange = MyUtil.GetLineOfDate(dt);
+                }
+                catch (System.Exception)
+                {
+                    System.Console.WriteLine("An err");
+                    throw new NotImplementedException();
+                }
+                var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/" + "README.md"));
+                s[lineToChange -1] = MyUtil.GenerateAListRow(dt,file);
+
+                MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/", "README.md");
             }
     }
 }

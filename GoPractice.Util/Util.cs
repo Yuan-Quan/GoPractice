@@ -378,6 +378,7 @@ namespace GoPractice.MyUtil
             
         }
         
+        ///
         public static void WriteAFile(List<string> ls, string path, string fileName)
         {
             if (File.Exists(path))
@@ -427,17 +428,17 @@ namespace GoPractice.MyUtil
             };
         }
 
-        private static string WkdToString(int DayOfWeek)
+        private static string WkdToString(DayOfWeek d)
         {
-            return DayOfWeek switch
+            return d switch
             {
-                0 => "日曜日",
-                1 =>"月曜日" ,
-                2 =>"火曜日" ,
-                3 =>"水曜日" ,
-                4 =>"木曜日" ,
-                5 =>"金曜日" ,
-                6 =>"土曜日" ,
+                DayOfWeek.Sunday => "日曜日",
+                DayOfWeek.Monday =>"月曜日" ,
+                DayOfWeek.Tuesday =>"火曜日" ,
+                DayOfWeek.Wednesday =>"水曜日" ,
+                DayOfWeek.Thursday =>"木曜日" ,
+                DayOfWeek.Friday =>"金曜日" ,
+                DayOfWeek.Saturday =>"土曜日" ,
                 _ => "err",
             };
         }
@@ -485,9 +486,28 @@ namespace GoPractice.MyUtil
             return new DateTime(y, m, d);
         } 
 
-        private static string GenerateAListRow(string jpWkd, string path)
+        public static string GenerateAListRow(DateTime dt, string recordName)
         {
-            return $"{jpWkd} | __[Done](/src/record/{path})__";
+            return $"__{WkdToString(dt.DayOfWeek)}__ | __[Done](/src/record/{recordName}.md)__";
+        }
+
+        public static int GetLineToInsert(DateTime dt)
+        {
+            //throw new NotImplementedException();
+            DateTime preDt, currentDt;
+            var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            for (int i = 0; i < s.Count; i++)
+            {
+                if(s[i].Contains("From")&&s[i].Contains("to"))
+                {
+                    
+                    continue;
+                }else
+                {
+                    continue;
+                }
+            }
+            throw new Exception("Unknow err");
         }
 
         //will return the corresponding line of date in README
@@ -498,7 +518,7 @@ namespace GoPractice.MyUtil
             var lineOfWkStart = -1;
             for (int i = s.Count - 1; i >= 0; i--)
             {
-                if(s[i].Contains("From")||s[i].Contains("to"))
+                if(s[i].Contains("From")&&s[i].Contains("to"))
                 {
                     if(LineToDt(s[i])==firstDay){
                         lineOfWkStart = i+1;
@@ -512,8 +532,8 @@ namespace GoPractice.MyUtil
             if (lineOfWkStart == -1)
             {
                 System.Console.WriteLine();
-                System.Console.WriteLine("No required date in README.md\nwill creat it");
-                throw new NotImplementedException();
+                System.Console.WriteLine("No required date in README.md");
+                return -1;
             }
 
             //System.Console.WriteLine(lineOfWkStart);
@@ -581,7 +601,7 @@ namespace GoPractice.MyUtil
         public static DateTime DtTryParse(string str)
         {
             DateTime dt = DateTime.Now;
-             System.Console.WriteLine();
+             //System.Console.WriteLine();
                 bool isGetDateFailed = false;
                 System.Console.WriteLine("Try to get date automaticly");
                 try
