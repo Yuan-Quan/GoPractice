@@ -488,7 +488,7 @@ namespace GoPractice.MyUtil
 
         public static string GenerateAListRow(DateTime dt, string recordName)
         {
-            return $"__{WkdToString(dt.DayOfWeek)}__ | __[Done](/src/record/{recordName})__";
+            return $"__{WkdToString(dt.DayOfWeek)}__ | __[Done](/src/record/{recordName}.md)__";
         }
 
         public static int GetLineToInsert(DateTime dt)
@@ -601,7 +601,7 @@ namespace GoPractice.MyUtil
         public static DateTime DtTryParse(string str)
         {
             DateTime dt = DateTime.Now;
-             System.Console.WriteLine();
+             //System.Console.WriteLine();
                 bool isGetDateFailed = false;
                 System.Console.WriteLine("Try to get date automaticly");
                 try

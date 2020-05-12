@@ -11,11 +11,7 @@ namespace GoPracticeCli
     {
         static void Startup()
         {
-            System.Console.WriteLine("gpcli: ");
-            System.Console.WriteLine();
-            var m = new MainEntry();
-            m.LinkAReport();
-            //MyUtil.GetLineToInsert(DateTime.Now);
+           
         }
         static int Main(string[] args)
         {
@@ -137,7 +133,7 @@ namespace GoPracticeCli
                 return;
             }            
 
-            //Delete duplicate file
+            //to Delete duplicate file
             void DeleteExist()
             {
                 Console.Write($"Will ");
@@ -185,8 +181,12 @@ namespace GoPracticeCli
                 if (dateTime.CompareTo(MyUtil.GetLatestDate().AddDays(6))>0)
                 {
                     System.Console.WriteLine("week out of bound, will creat one");
+                    throw new NotImplementedException();
                     //MyUtil.GenerateAWeek(dateTime);
                 }
+
+                //creat corresponding link in the README
+                LinkAReport(date);
             }
         }
 
@@ -571,7 +571,16 @@ namespace GoPracticeCli
                     }
                 }
 
-                var lineToChange = MyUtil.GetLineOfDate(dt);
+                int lineToChange = 0;
+                try
+                {
+                    lineToChange = MyUtil.GetLineOfDate(dt);
+                }
+                catch (System.Exception)
+                {
+                    System.Console.WriteLine("An err");
+                    throw new NotImplementedException();
+                }
                 var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/" + "README.md"));
                 s[lineToChange -1] = MyUtil.GenerateAListRow(dt,file);
 
