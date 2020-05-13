@@ -11,7 +11,8 @@ namespace GoPracticeCli
     {
         static void Startup()
         {
-           
+           var i = MyUtil.GetLineToInsert(new DateTime(2020, 5,5));
+            System.Console.WriteLine(i);
         }
         static int Main(string[] args)
         {
@@ -42,7 +43,7 @@ namespace GoPracticeCli
             )
         {
             DateTime dateTime;
-            bool isGetDateFailed;
+            //bool isGetDateFailed;
             if (date == null)
             {
                 Console.WriteLine("No date specifyed, using current date");

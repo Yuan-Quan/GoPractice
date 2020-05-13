@@ -85,18 +85,18 @@ namespace GoPractice.MyUtil
                 case ".mp3":
                 case ".midi":
                     return FileType.audio;
-                    break;
+                    //break;
                 case ".png":
                 case ".jpg":
                     return FileType.image;
-                    break;
+                    //break;
                 case ".mp4":
                 case ".avi":
                     return FileType.video;
-                    break;
+                    //break;
                 default:
                 throw new Exception("File type not supported");
-                    break;
+                    //break;
             }
         }
         
@@ -460,6 +460,22 @@ namespace GoPractice.MyUtil
             throw new Exception("No latest date found in README");
         }
 
+        public static DateTime GetFirstDate()
+        {
+            var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            for (int i = 0; i < s.Count; i++)
+            {
+                if(s[i].Contains("From")&&s[i].Contains("to"))
+                {
+                    return LineToDt(s[i]);
+                }else
+                {
+                    continue;
+                }
+            }
+            throw new Exception("No latest date found in README");
+        }
+
         private static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
         {
             int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
@@ -493,21 +509,32 @@ namespace GoPractice.MyUtil
 
         public static int GetLineToInsert(DateTime dt)
         {
+            if (GetLineOfDate(dt)!=-1)
+            {
+                return -1;
+            }
             //throw new NotImplementedException();
             DateTime preDt, currentDt;
+            preDt = GetFirstDate();
+            currentDt = GetFirstDate().AddDays(7);
             var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
             for (int i = 0; i < s.Count; i++)
             {
-                if(s[i].Contains("From")&&s[i].Contains("to"))
+                if((s[i].Contains("From")&&s[i].Contains("to")))
                 {
-                    
+                    currentDt = LineToDt(s[i]);
+                    if ((DateTime.Compare(preDt, dt)<0)&&(DateTime.Compare(dt, currentDt)<0))
+                    {
+                        return i;
+                    }
+                    preDt = currentDt;
                     continue;
                 }else
                 {
                     continue;
                 }
             }
-            throw new Exception("Unknow err");
+            return s.Count+1;
         }
 
         //will return the corresponding line of date in README
