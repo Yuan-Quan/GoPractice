@@ -11,8 +11,7 @@ namespace GoPracticeCli
     {
         static void Startup()
         {
-           var i = MyUtil.GetLineToInsert(new DateTime(2020, 5,5));
-            System.Console.WriteLine(i);
+           //debug code here
         }
         static int Main(string[] args)
         {
@@ -179,11 +178,10 @@ namespace GoPracticeCli
                 Console.WriteLine();
 
                 //doesn't have this week in README
-                if (dateTime.CompareTo(MyUtil.GetLatestDate().AddDays(6))>0)
+                if (MyUtil.GetLineOfDate(MyUtil.DtStrToDt(date))==-1)
                 {
                     System.Console.WriteLine("week out of bound, will creat one");
-                    throw new NotImplementedException();
-                    //MyUtil.GenerateAWeek(dateTime);
+                    MyUtil.GenerateAWeek(MyUtil.GetLineToInsert(MyUtil.DtStrToDt(date)),MyUtil.DtStrToDt(date));
                 }
 
                 //creat corresponding link in the README
@@ -575,7 +573,7 @@ namespace GoPracticeCli
                 int lineToChange = 0;
                 try
                 {
-                    lineToChange = MyUtil.GetLineOfDate(dt);
+                    lineToChange = MyUtil.GetLineOfDate(MyUtil.DtStrToDt(file));
                 }
                 catch (System.Exception)
                 {

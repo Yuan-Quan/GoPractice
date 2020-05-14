@@ -399,7 +399,7 @@ namespace GoPractice.MyUtil
 
         private static bool IsRow(string str)
         {
-            return str.Contains(" | ")&&(!(str.Contains("------------")||str.Contains("Header")));
+            return str.Contains(" |")&&(!(str.Contains("------------")||str.Contains("Header")));
         }
 
         private static string GetRowInfo(string str)
@@ -558,7 +558,7 @@ namespace GoPractice.MyUtil
             }
             if (lineOfWkStart == -1)
             {
-                System.Console.WriteLine();
+                //System.Console.WriteLine();
                 System.Console.WriteLine("No required date in README.md");
                 return -1;
             }
@@ -567,7 +567,7 @@ namespace GoPractice.MyUtil
 
             int dayOffset = -1;
             DateTime tempDt;
-            for (int i = lineOfWkStart; i <= lineOfWkStart+10; i++)
+            for (int i = lineOfWkStart; i < lineOfWkStart+10; i++)
             {
                 if (IsRow(s[i]))
                 {
@@ -582,7 +582,8 @@ namespace GoPractice.MyUtil
                     continue;
                 }
             }
-            throw new Exception("DATE NO FOUND!!");
+            System.Console.WriteLine("Date not found in README");
+            return -1;
         }
 
         private static string GenerateWeekTitle(DateTime s, DateTime e)
