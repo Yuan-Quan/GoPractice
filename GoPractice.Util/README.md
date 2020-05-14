@@ -25,26 +25,32 @@ Explain how to use it.
 
 first test can it run properly:
   
-linux
+Linux example
 
 ```bash
-dotnet gpcli.dll --help
+dotnet gpcli.dll config set path '/home/user/GoPractice,Root directory of the GoPractice folder'
 ```
   
-windows
+windows example
 
 ```bash
-gpcli.exe --help
+gpcli.dll config set path 'C:/Users/user/Documents/Gopractice,Root directory of the GoPractice folder'
 ```
-  
-it should show helps.
-### And coding style tests
+after setting the path, you can start using.  
 
-Explain what these tests test and why
+### Creat Edit a report
 
+```bash
+dotnet gpcli.dll new -d [date]
 ```
-Give an example
+
+simply use no paramter to use today's date.
+
+```bash
+dotnet gpcli.dll select
 ```
+
+if you want to 
 
 ## Deployment
 
