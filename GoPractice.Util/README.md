@@ -8,37 +8,20 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-.NET Core
-
-```bash
-yourPackageManagerOrSth -maybeSomeParameter dotnetcoreOrSthElse
-```
-
-git
-
-```bash
-yourPackageManagerOrSth -maybeSomeParameter git
-```
+.NET Core runtime
+[Install.NetCore](https://dotnet.microsoft.com/download)
 
 Just install them, you kown how to do it.  
-Make sure your git is in PATH(of course)
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+Dowload the application in release.
 
-Say what the step will be: just like compile a .Netcore app
+## Configuring and using
 
-```bash
-$ dotnet restore && dotnet build
-> some text that shows you started the app
-```
+Explain how to use it.
 
-## Running the tests
-
-Explain how to run the automated tests for this system: no this feature
-
-### Break down into end to end tests
+### Configuring it for your own use
 
 first test can it run properly:
   
