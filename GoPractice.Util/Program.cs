@@ -11,24 +11,18 @@ namespace GoPracticeCli
     {
         static void Startup()
         {
-            //MyUtil.ReadAllSettings();
-
+           //debug code here
         }
         static int Main(string[] args)
         {
             Startup();
-            //System.Console.WriteLine(MyUtil.GetLastFirstDate().ToShortDateString());
-            //var m = new MainEntry();
-            //m.EditFile();
-            //System.Console.WriteLine(MyUtil.GetLineOfDate(new DateTime(2020, 4, 20)));
             return new AppRunner<MainEntry>()
-            .UseDefaultMiddleware()
-            .Run(args);
+                .UseDefaultMiddleware()
+                .Run(args);
+            
             //return 0;
         }
     }
-
-
 
     public class MainEntry
     {
@@ -47,13 +41,19 @@ namespace GoPracticeCli
             [Option(ShortName = "d")]string date = null
             )
         {
+            DateTime dateTime;
+            //bool isGetDateFailed;
             if (date == null)
             {
                 Console.WriteLine("No date specifyed, using current date");
                 //maybe print the current timezone 
-                date = MyUtil.GetDateString(DateTime.Now);
+                dateTime = DateTime.Now;
+            }else
+            {
+                dateTime = MyUtil.DtTryParse(date);
             }
             
+            date = MyUtil.GetDateString(dateTime);
             Console.WriteLine($"new record will be named {date}.md");
             Console.WriteLine();
             // Get the local time zone and the current local time and year.
@@ -62,6 +62,7 @@ namespace GoPracticeCli
             Console.WriteLine("Your current time zone set to:");
             Console.WriteLine(dataFmt, "UTC offset:", localZone.GetUtcOffset(currentDate));
             Console.WriteLine();
+
 
             if (File.Exists(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md"))
             {
@@ -130,15 +131,9 @@ namespace GoPracticeCli
                 GenerateReport();
 
                 return;
-            }
+            }            
 
-            void LinkAReport(string path, DateTime dt)
-            {
-                
-            }
-            
-
-            //Delete duplicate file
+            //to Delete duplicate file
             void DeleteExist()
             {
                 Console.Write($"Will ");
@@ -181,6 +176,16 @@ namespace GoPracticeCli
                 Console.Write($"File {date}.md generated successfully");
                 Console.ForegroundColor = preConsoleColor;
                 Console.WriteLine();
+
+                //doesn't have this week in README
+                if (MyUtil.GetLineOfDate(MyUtil.DtStrToDt(date))==-1)
+                {
+                    System.Console.WriteLine("week out of bound, will creat one");
+                    MyUtil.GenerateAWeek(MyUtil.GetLineToInsert(MyUtil.DtStrToDt(date)),MyUtil.DtStrToDt(date));
+                }
+
+                //creat corresponding link in the README
+                LinkAReport(date);
             }
         }
 
@@ -339,19 +344,90 @@ namespace GoPracticeCli
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("You must specify a file path when attach a file");
                         Console.ForegroundColor = preForegroundColor;
+                        System.Console.WriteLine(
+                            "\nYou can add '-f ' then drag and dorp the file into your terminal!!"
+                        );
                     }
-                    AttachFile(, "", "");
+                    if(!File.Exists(fileAtch))
+                    {
+                        var preForegroundColor = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("No file found in given path");
+                        Console.ForegroundColor = preForegroundColor;
+                        return;
+                    }
+                    AttachFile(fileAtch);
                     break;
                 default:
                 System.Console.WriteLine();
                 System.Console.WriteLine("unknow opration");
                 break;
             }
-            void AttachFile(string fileType, string path)
+
+            void AttachFile(string path)
             {
-                
+                var fileType = MyUtil.GetFileType(path);
+                switch (fileType)
+                {
+                    case FileType.image:
+                        AttachImage(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/images/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
+                        break;
+                    case FileType.audio:
+                        AttachAudio(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/audio/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
+                        break;
+                    case FileType.video:
+                        AttachVideo(path, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/video/{MyUtil.GetSHA1Hash(path)}{path.Substring(path.LastIndexOf('.'), path.Length - path.LastIndexOf('.'))}");
+                        break;
+                    default:
+                        return;
+                }
             }
 
+            void AttachAudio(string pathOrg, string pathDst)
+            {
+                if (File.Exists(pathDst))
+                {
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("File already existed!! will abort this action");
+                    Console.ForegroundColor = preForegroundColor;
+                    return;
+                }
+                File.Copy(pathOrg, pathDst);
+                AddAString("  ");
+                AddAString($"[__AUDIO__](..{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+            }
+
+            void AttachImage(string pathOrg, string pathDst)
+            {
+                if (File.Exists(pathDst))
+                {
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("File already existed!! will abort this action");
+                    Console.ForegroundColor = preForegroundColor;
+                    return;
+                }
+                File.Copy(pathOrg, pathDst);
+                AddAString("  ");
+                AddAString($"![altText](..{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+            }
+
+            void AttachVideo(string pathOrg, string pathDst)
+            {
+                if (File.Exists(pathDst))
+                {
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("File already existed!! will abort this action");
+                    Console.ForegroundColor = preForegroundColor;
+                    return;
+                }
+                File.Copy(pathOrg, pathDst);
+                AddAString("  ");
+                AddAString($"[__AUDIO__](..{pathDst.Substring(pathDst.IndexOf("src")+3)})");
+            }
+            
             void DeleteLastString()
             {
                 var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/" + file));
@@ -410,5 +486,104 @@ namespace GoPracticeCli
             }
 
         }
+
+        public void LinkAReport(
+            string file = null,
+            string date = null
+        )
+            {
+                DateTime dt = DateTime.Today;
+                System.Console.WriteLine();
+                if (file == null)
+                {
+                    System.Console.WriteLine("No file specified, will use selected file:");
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    System.Console.WriteLine(MyUtil.ReadSetting("WorkingOn").Split(',')[0]);
+                    Console.ForegroundColor = preForegroundColor;
+                    file = MyUtil.ReadSetting("WorkingOn").Split(',')[0];
+                }
+                System.Console.WriteLine();
+                bool isGetDateFailed = false;
+                System.Console.WriteLine("Try to get date automaticly");
+                try
+                {
+                    dt = MyUtil.DtStrToDt(file);
+                }catch{
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    System.Console.WriteLine("Cannot get date,");
+                    Console.ForegroundColor = preForegroundColor;
+                    isGetDateFailed = true;
+                }
+
+                if(isGetDateFailed)
+                {
+                    bool f1, f2, f3;
+                    bool isDateSetFaild;
+                    //bool isTryPraseFaild;
+                    while (true)
+                    {
+                        isDateSetFaild= false;
+                        System.Console.WriteLine();
+                        System.Console.WriteLine("Enter the date, yyyy/mm/dd");
+                        System.Console.Write("> ");
+                        var entry = Console.ReadLine();
+                        try
+                        {
+                            Int32.TryParse(entry.Split('/')[0], out int ty);
+                            Int32.TryParse(entry.Split('/')[1], out int tm);
+                            Int32.TryParse(entry.Split('/')[2], out int td);
+                        }
+                        catch
+                        {
+                            System.Console.WriteLine("Format err, try again");
+                            continue;
+                        }
+
+                        f1 = Int32.TryParse(entry.Split('/')[0], out int y);
+                        f2 = Int32.TryParse(entry.Split('/')[1], out int m);
+                        f3 = Int32.TryParse(entry.Split('/')[2], out int d);
+                        
+                        if (f1&&f2&&f3)
+                        {
+                            try
+                            {
+                                dt = new DateTime(y,m,d);
+                            }catch
+                            {
+                                isDateSetFaild= true;
+                            }  
+                        }else
+                        {
+                            System.Console.WriteLine("Format err, try again");
+                            continue;
+                        }
+
+                        if (isDateSetFaild)
+                        {
+                            System.Console.WriteLine("Date incorrect!!");
+                            continue;
+                        }
+
+                        break;
+                    }
+                }
+
+                int lineToChange = 0;
+                try
+                {
+                    lineToChange = MyUtil.GetLineOfDate(MyUtil.DtStrToDt(file));
+                }
+                catch (System.Exception)
+                {
+                    System.Console.WriteLine("An err");
+                    throw new NotImplementedException();
+                }
+                var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/" + "README.md"));
+                s[lineToChange -1] = MyUtil.GenerateAListRow(dt,file);
+
+                MyUtil.WriteAFile(s, @$"{MyUtil.ReadSetting("path").Split(',')[0]}/", "README.md");
+            }
     }
 }

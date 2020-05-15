@@ -28,7 +28,7 @@ Things todo within 40 hours:
 
 ### Have you practiced today? Sign here
 
-<!--StarOfPunch-->
+<!--StartOfPunch-->
 
 #### From Apr.5.2020 to Apr.11.2020
 
@@ -66,15 +66,50 @@ __木曜日__ | __[Done](/src/record/Apr18.2020.md)__
 __金曜日__ | __[Done](/src/record/Apr18.2020.md)__
 __土曜日__ | lll
 
-
-#### From Apr.28.2020 to May.5.2020
+#### From Apr.26.2020 to May2.2020
 
 First Header | Second Header
 ------------ | -------------
 __日曜日__ | 
 __月曜日__ | 
 __火曜日__ | 
-__水曜日__ |
-__木曜日__ | 
-__金曜日__ | 
+__水曜日__ | practice for rehearsals
+__木曜日__ | practice for rehearsals
+__金曜日__ | rehearsaled
+__土曜日__ | maybe I should study more？
+
+#### From May3.2020 to May9.2020
+
+First Header | Second Header
+------------ | -------------
+__日曜日__ | __[Done](/src/record/May.6.2020.md)__
+__月曜日__ | __[Done](/src/record/May.6.2020.md)__
+__火曜日__ | __[Done](/src/record/May.6.2020.md)__
+__水曜日__ | 
+__木曜日__ |
+__金曜日__ |
 __土曜日__ | 
+
+#### From May10.2020 to May16.2020
+
+First Header | Second Header
+------------ | -------------
+__日曜日__ | __[Done](/src/record/May10.2020.md)__
+__月曜日__ | 
+__火曜日__ | __[Done](/src/record/May12.2020.md)__
+__水曜日__ | __[Done](/src/record/May13.2020.md)__
+__木曜日__ | __[Done](/src/record/May14.2020.md)__
+__金曜日__ |
+__土曜日__ | 
+
+#### From May17.2020 to May23.2020
+
+First Header | Second Header
+------------ | -------------
+__日曜日__ |
+__月曜日__ |
+__火曜日__ |
+__水曜日__ |
+__木曜日__ |
+__金曜日__ |
+__土曜日__ |
