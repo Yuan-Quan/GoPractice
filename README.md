@@ -100,7 +100,7 @@ __火曜日__ | __[Done](/src/record/May12.2020.md)__
 __水曜日__ | __[Done](/src/record/May13.2020.md)__
 __木曜日__ | __[Done](/src/record/May14.2020.md)__
 __金曜日__ |
-__土曜日__ | 
+__土曜日__ | __[Done](/src/record/May16.2020.md)__
 
 #### From May17.2020 to May23.2020
 
