@@ -85,18 +85,18 @@ namespace GoPractice.MyUtil
                 case ".mp3":
                 case ".midi":
                     return FileType.audio;
-                    break;
+                    //break;
                 case ".png":
                 case ".jpg":
                     return FileType.image;
-                    break;
+                    //break;
                 case ".mp4":
                 case ".avi":
                     return FileType.video;
-                    break;
+                    //break;
                 default:
                 throw new Exception("File type not supported");
-                    break;
+                    //break;
             }
         }
         
@@ -399,7 +399,7 @@ namespace GoPractice.MyUtil
 
         private static bool IsRow(string str)
         {
-            return str.Contains(" | ")&&(!(str.Contains("------------")||str.Contains("Header")));
+            return str.Contains(" |")&&(!(str.Contains("------------")||str.Contains("Header")));
         }
 
         private static string GetRowInfo(string str)
@@ -460,6 +460,22 @@ namespace GoPractice.MyUtil
             throw new Exception("No latest date found in README");
         }
 
+        public static DateTime GetFirstDate()
+        {
+            var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
+            for (int i = 0; i < s.Count; i++)
+            {
+                if(s[i].Contains("From")&&s[i].Contains("to"))
+                {
+                    return LineToDt(s[i]);
+                }else
+                {
+                    continue;
+                }
+            }
+            throw new Exception("No latest date found in README");
+        }
+
         private static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
         {
             int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
@@ -488,26 +504,37 @@ namespace GoPractice.MyUtil
 
         public static string GenerateAListRow(DateTime dt, string recordName)
         {
-            return $"__{WkdToString(dt.DayOfWeek)}__ | __[Done](/src/record/{recordName}.md)__";
+            return $"__{WkdToString(dt.DayOfWeek)}__ | __[Done](/src/records/{recordName}.md)__";
         }
 
         public static int GetLineToInsert(DateTime dt)
         {
+            if (GetLineOfDate(dt)!=-1)
+            {
+                return -1;
+            }
             //throw new NotImplementedException();
             DateTime preDt, currentDt;
+            preDt = GetFirstDate();
+            currentDt = GetFirstDate().AddDays(7);
             var s = new List<string>(MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/README.md"));
             for (int i = 0; i < s.Count; i++)
             {
-                if(s[i].Contains("From")&&s[i].Contains("to"))
+                if((s[i].Contains("From")&&s[i].Contains("to")))
                 {
-                    
+                    currentDt = LineToDt(s[i]);
+                    if ((DateTime.Compare(preDt, dt)<0)&&(DateTime.Compare(dt, currentDt)<0))
+                    {
+                        return i;
+                    }
+                    preDt = currentDt;
                     continue;
                 }else
                 {
                     continue;
                 }
             }
-            throw new Exception("Unknow err");
+            return s.Count+1;
         }
 
         //will return the corresponding line of date in README
@@ -531,7 +558,7 @@ namespace GoPractice.MyUtil
             }
             if (lineOfWkStart == -1)
             {
-                System.Console.WriteLine();
+                //System.Console.WriteLine();
                 System.Console.WriteLine("No required date in README.md");
                 return -1;
             }
@@ -540,7 +567,7 @@ namespace GoPractice.MyUtil
 
             int dayOffset = -1;
             DateTime tempDt;
-            for (int i = lineOfWkStart; i <= lineOfWkStart+10; i++)
+            for (int i = lineOfWkStart; i < lineOfWkStart+10; i++)
             {
                 if (IsRow(s[i]))
                 {
@@ -555,7 +582,8 @@ namespace GoPractice.MyUtil
                     continue;
                 }
             }
-            throw new Exception("DATE NO FOUND!!");
+            System.Console.WriteLine("Date not found in README");
+            return -1;
         }
 
         private static string GenerateWeekTitle(DateTime s, DateTime e)
