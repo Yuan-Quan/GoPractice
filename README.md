@@ -106,7 +106,7 @@ __土曜日__ | __[Done](/src/records/May16.2020.md)__
 
 First Header | Second Header
 ------------ | -------------
-__日曜日__ |
+__日曜日__ | __[Done(Hearing Test)](/src/records/May17.2020.md)__
 __月曜日__ |
 __火曜日__ |
 __水曜日__ |
