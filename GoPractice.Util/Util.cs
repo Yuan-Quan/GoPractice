@@ -179,7 +179,7 @@ namespace GoPractice.MyUtil
                 }
                 else
                 {
-                    settings[key].Value = value;
+                    settings[key].Value = ""+value+","+settings[key].Value.Split(',')[1];
                     
                 }
                 configFile.Save(ConfigurationSaveMode.Modified);
