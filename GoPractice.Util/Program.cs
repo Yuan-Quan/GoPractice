@@ -147,7 +147,7 @@ namespace GoPracticeCli
 
                 preForegroundColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("Done!");
+                Console.WriteLine("Done!");
                 Console.ForegroundColor = preForegroundColor;
             }
 
@@ -163,6 +163,7 @@ namespace GoPracticeCli
                     preForegroundColor = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("WRONG PATH!! Have you set the right path in app.config???");
+                    System.Console.WriteLine();
                     Console.ForegroundColor = preForegroundColor;
                     throw;
                 }
@@ -170,7 +171,7 @@ namespace GoPracticeCli
 
                 ConsoleColor preConsoleColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write($"File {date}.md generated successfully");
+                Console.Write($"File [{date}.md] generated successfully");
                 Console.ForegroundColor = preConsoleColor;
 
                 //doesn't have this week in README
@@ -289,7 +290,7 @@ namespace GoPracticeCli
             }
 
             fileName += ".md";
-            Console.WriteLine($"\nWorking on file: {fileName}\n");
+            Console.WriteLine($"\nWorking on file: [{fileName}]\n");
 
             MyUtil.AddUpdateAppSettings("WorkingOn", fileName + ",Current working file");
         }

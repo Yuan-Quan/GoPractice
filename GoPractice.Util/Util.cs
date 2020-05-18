@@ -390,10 +390,10 @@ namespace GoPractice.MyUtil
                 foreach (string line in ls)
                 outputFile.WriteLine(line);
             }
-            
+
             var preForegroundColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("File [fileName] Write Succeed!!");
+            Console.WriteLine($"File [{fileName}] Write Succeed!!");
             Console.ForegroundColor = preForegroundColor;
         }
 
@@ -558,7 +558,6 @@ namespace GoPractice.MyUtil
             }
             if (lineOfWkStart == -1)
             {
-                //System.Console.WriteLine();
                 System.Console.WriteLine("No required date in README.md");
                 return -1;
             }
