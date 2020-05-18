@@ -142,15 +142,13 @@ namespace GoPracticeCli
                 Console.Write("DELETE");
                 Console.ForegroundColor = preForegroundColor;
                 Console.Write(@$" {MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md");
-                Console.WriteLine();
 
                 File.Delete(@$"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/{date}.md");
 
                 preForegroundColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("Done!");
+                Console.WriteLine("Done!");
                 Console.ForegroundColor = preForegroundColor;
-                Console.WriteLine();
             }
 
             //New a report
@@ -165,17 +163,16 @@ namespace GoPracticeCli
                     preForegroundColor = Console.ForegroundColor;
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write("WRONG PATH!! Have you set the right path in app.config???");
+                    System.Console.WriteLine();
                     Console.ForegroundColor = preForegroundColor;
-                    Console.WriteLine();
                     throw;
                 }
 
 
                 ConsoleColor preConsoleColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write($"File {date}.md generated successfully");
+                Console.Write($"File [{date}.md] generated successfully");
                 Console.ForegroundColor = preConsoleColor;
-                Console.WriteLine();
 
                 //doesn't have this week in README
                 if (MyUtil.GetLineOfDate(MyUtil.DtStrToDt(date))==-1)
@@ -293,7 +290,7 @@ namespace GoPracticeCli
             }
 
             fileName += ".md";
-            Console.WriteLine($"\nWorking on file: {fileName}\n");
+            Console.WriteLine($"\nWorking on file: [{fileName}]\n");
 
             MyUtil.AddUpdateAppSettings("WorkingOn", fileName + ",Current working file");
         }
@@ -447,7 +444,6 @@ namespace GoPracticeCli
             {
                 Console.WriteLine();
                 Console.WriteLine($"Working on {fileName}...");
-                Console.WriteLine();
                 var s = new List<string>();
                 foreach (var item in MyUtil.TODOEdit(fileName))
                 {
