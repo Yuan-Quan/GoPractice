@@ -390,10 +390,10 @@ namespace GoPractice.MyUtil
                 foreach (string line in ls)
                 outputFile.WriteLine(line);
             }
-            Console.WriteLine();
+            
             var preForegroundColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("File Write Succeed!!");
+            Console.WriteLine("File [fileName] Write Succeed!!");
             Console.ForegroundColor = preForegroundColor;
         }
 
