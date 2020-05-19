@@ -189,7 +189,7 @@ namespace GoPracticeCli
         [Command(Name = "config",
         Usage = "config [opration] [key] [value]\nexample: config set path ~/GoPractice",
         Description = "view change/add settings",
-        ExtendedHelpText = "opration: view set add remove\nformat: [opration] key value,description")]
+        ExtendedHelpText = "oprations: view set add remove\nformat: [opration] key value,description")]
         public void Config(
             string opration = null,
             string k = null,
@@ -265,9 +265,9 @@ namespace GoPracticeCli
         }
 
         [Command(Name = "select",
-        Usage = "select [file name]",
+        Usage = "select [file name defualt = today]",
         Description = "select working file",
-        ExtendedHelpText = "select working file")]
+        ExtendedHelpText = "select working file, your opration will all on it.")]
         public void Select(
             string fileName = null
             )
@@ -298,10 +298,10 @@ namespace GoPracticeCli
         [Command(Name = "edit",
         Usage = "edit [option] [paramter]",
         Description = "todo add delete",
-        ExtendedHelpText = "edit file")]
+        ExtendedHelpText = "edit file,\n Oprations: editTODO todo, add a, delete del d rm, attach.")]
         public void EditFile(
         [Operand(Name = "opration",
-        Description = "What do you want to do? editTODO, add, delete, attach")]
+        Description = "editTODO todo, add a, delete del d rm, attach")]
         string opr,
         [Option(LongName = "file", ShortName = "f",
         Description = "file you want to attach")]
@@ -326,6 +326,7 @@ namespace GoPracticeCli
                     AddAString(addStr);
                     break;
                 case "d":
+                case "rm":
                 case "delete":
                 case "DELETE":
                 case "Delete":
@@ -460,9 +461,9 @@ namespace GoPracticeCli
         }
 
         [Command(Name = "cat",
-        Usage = "cat [file name]",
-        Description = "print a report",
-        ExtendedHelpText = "just like cat command in bash")]
+        Usage = "cat [file name default = selected]",
+        Description = "print a report's content in console",
+        ExtendedHelpText = "cat [file name] - file name will be selected file if leave it blank\nprint a report's content in console\nuse gpcli select [fileName] to select file")]
         public void Cat(
             string file = null   
             )
@@ -476,9 +477,20 @@ namespace GoPracticeCli
             Console.WriteLine();
             
             var fl = new List<string>(); 
-            foreach (var line in MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file))
+            try
             {
-                System.Console.WriteLine(line);
+                foreach (var line in MyUtil.ReadFrom($@"{MyUtil.ReadSetting("path").Split(',')[0]}/src/records/"+file))
+                {
+                    System.Console.WriteLine(line);
+                }
+            }
+            catch (System.Exception)
+            { 
+                    var preForegroundColor = Console.ForegroundColor;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("fileName is not recorgnized!!");
+                    Console.ForegroundColor = preForegroundColor;
+                throw;
             }
 
         }
