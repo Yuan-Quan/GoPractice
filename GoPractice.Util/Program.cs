@@ -12,6 +12,7 @@ namespace GoPracticeCli
         static void Startup()
         {
            //debug code here
+           MyUtil.TODOEdit(MyUtil.ReadSetting("WorkingOn").Split(',')[0]);
         }
         static int Main(string[] args)
         {

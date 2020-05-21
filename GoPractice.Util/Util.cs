@@ -289,6 +289,13 @@ namespace GoPractice.MyUtil
             return sb.ToString();
         }
 
+        private static string UnchekCheckbox(string str)
+        {
+            var sb = new StringBuilder(str);
+            sb[GetBoxIndex(str)] = ' ';
+            return sb.ToString();
+        }
+
         /// <summary>
         /// match a patter of checkbox
         /// </summary>
@@ -296,7 +303,7 @@ namespace GoPractice.MyUtil
         /// <returns>index of box</returns>
         private static int GetBoxIndex(string str)
         {
-            var match = Regex.Match(str, "- [ ]");
+            var match = Regex.Match(str, "- [");
             return match.Index + 3;
         }
 
@@ -307,7 +314,7 @@ namespace GoPractice.MyUtil
         /// <returns></returns>
         private static bool IsCheckbox(string str)
         {
-            return str.Contains("- [ ]");
+            return str.Contains("- [ ]")||str.Contains("- [x]");
         }
 
         /// <summary>
