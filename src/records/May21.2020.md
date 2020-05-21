@@ -20,13 +20,13 @@ __Maintain your hearing, don't be DEAF!!__
 
 - [x] Interval
 - [x] Chord
-- [x] Rhythm
-- [ ] Sight reading
+- [ ] Rhythm
+- [x] Sight reading
 - [ ] Absolute pitch
 - [ ] Note singing  
 
 __Just listen to some music you like.__
 
-- [ ] Have fun  
+- [x] Have fun  
 
 ## What did you do, Any midi or recording

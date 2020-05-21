@@ -303,7 +303,7 @@ namespace GoPractice.MyUtil
         /// <returns>index of box</returns>
         private static int GetBoxIndex(string str)
         {
-            var match = Regex.Match(str, "- [");
+            var match = Regex.Match(str, "- [ ]");
             return match.Index + 3;
         }
 
@@ -363,7 +363,7 @@ namespace GoPractice.MyUtil
                         }
                         else if ((ck == "no") || (ck == "n"))
                         {
-                            yield return line;
+                            yield return MyUtil.UnchekCheckbox(line);
                             break;
                         }
                         else
