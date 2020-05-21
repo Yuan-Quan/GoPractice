@@ -18,9 +18,9 @@ __Practice Keyboard to maintain your finger skill.__
 
 __Maintain your hearing, don't be DEAF!!__
 
-- [ ] Interval
-- [ ] Chord
-- [ ] Rhythm
+- [x] Interval
+- [x] Chord
+- [x] Rhythm
 - [ ] Sight reading
 - [ ] Absolute pitch
 - [ ] Note singing  
