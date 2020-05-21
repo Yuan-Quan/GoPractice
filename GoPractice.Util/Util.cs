@@ -289,6 +289,13 @@ namespace GoPractice.MyUtil
             return sb.ToString();
         }
 
+        private static string UnchekCheckbox(string str)
+        {
+            var sb = new StringBuilder(str);
+            sb[GetBoxIndex(str)] = ' ';
+            return sb.ToString();
+        }
+
         /// <summary>
         /// match a patter of checkbox
         /// </summary>
@@ -307,7 +314,7 @@ namespace GoPractice.MyUtil
         /// <returns></returns>
         private static bool IsCheckbox(string str)
         {
-            return str.Contains("- [ ]");
+            return str.Contains("- [ ]")||str.Contains("- [x]");
         }
 
         /// <summary>
@@ -356,7 +363,7 @@ namespace GoPractice.MyUtil
                         }
                         else if ((ck == "no") || (ck == "n"))
                         {
-                            yield return line;
+                            yield return MyUtil.UnchekCheckbox(line);
                             break;
                         }
                         else
