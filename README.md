@@ -2,31 +2,7 @@
 
 Practice __40 hours__ a day and you will get a girlfriend.
 
-## What I need to do
-
-Things todo within 40 hours:  
-
-* Practice bAss for your band!!
-  * Basic scale
-  * Groove is important
-  * Controling and Endurance
-  * Why not play a song
-
-* Practice Keyboard to maintain your finger skill.
-  * Hanon - Virtuoso Pianist in 60 Exercises
-  * Play something for fun!!
-
-* Maintain your hearing, don't be DEAF!!
-  * Interval
-  * Chord
-  * Rhythm
-  * Sight reading
-  * Absolute pitch
-  * Note singing
-
-* Just listen to some music you like.
-
-### Have you practiced today? Sign here
+### Have you practiced today?
 
 <!--StartOfPunch-->
 
