@@ -18,15 +18,15 @@ __Practice Keyboard to maintain your finger skill.__
 
 __Maintain your hearing, don't be DEAF!!__
 
-- [ ] Interval
+- [x] Interval
 - [x] Chord
-- [ ] Rhythm
+- [x] Rhythm
 - [ ] Sight reading
-- [x] Absolute pitch
+- [ ] Absolute pitch
 - [ ] Note singing  
 
 __Just listen to some music you like.__
 
-- [x] Have fun  
+- [ ] Have fun  
 
 ## What did you do, Any midi or recording
