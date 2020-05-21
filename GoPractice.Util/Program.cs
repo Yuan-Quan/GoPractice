@@ -147,7 +147,7 @@ namespace GoPracticeCli
 
                 preForegroundColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Done!");
+                Console.WriteLine("\nDone!");
                 Console.ForegroundColor = preForegroundColor;
             }
 
