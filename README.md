@@ -87,5 +87,5 @@ __月曜日__ | __[Done](/src/records/May18.2020.md)__
 __火曜日__ | __[Done](/src/records/May19.2020.md)__
 __水曜日__ | __[Done](/src/records/May20.2020.md)__
 __木曜日__ | __[Done](/src/records/May21.2020.md)__
-__金曜日__ |
+__金曜日__ | __[Done](/src/records/May22.2020.md)__
 __土曜日__ |
