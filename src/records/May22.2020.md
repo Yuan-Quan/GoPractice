@@ -6,27 +6,29 @@
 
 __Practice bAss for your band!!__
 
-- [ ] Basic scale
-- [ ] Groove is important
-- [ ] Controling and Endurance
-- [ ] Why not play a song  
+- [x] Basic scale
+- [x] Groove is important
+- [x] Controling and Endurance
+- [x] Why not play a song  
 
 __Practice Keyboard to maintain your finger skill.__
 
-- [x] Hanon - Virtuoso Pianist in 60 Exercises
-- [x] Play something for fun!!  
+- [ ] Hanon - Virtuoso Pianist in 60 Exercises
+- [ ] Play something for fun!!  
 
 __Maintain your hearing, don't be DEAF!!__
 
 - [x] Interval
 - [ ] Chord
 - [x] Rhythm
-- [ ] Sight reading
-- [x] Absolute pitch
-- [x] Note singing  
+- [x] Sight reading
+- [ ] Absolute pitch
+- [ ] Note singing  
 
 __Just listen to some music you like.__
 
 - [x] Have fun  
 
 ## What did you do, Any midi or recording
+  
+[__AUDIO__](../audio/4A2AF7648F352D1241BDCB32D8BF9069B395EF7F.wav)
