@@ -2,7 +2,11 @@
 
 Practice __40 hours__ a day and you will get a girlfriend.
 
-### Have you practiced today?
+## Todo list
+
+[TEMPLATE](src/templates/DailyReport.md)
+
+### Have you practiced today
 
 <!--StartOfPunch-->
 
@@ -34,8 +38,8 @@ __土曜日__ | __[Done](/src/record/Apr18.2020.md)__
 
 First Header | Second Header
 ------------ | -------------
-__日曜日__ | 
-__月曜日__ | 
+__日曜日__ |
+__月曜日__ |
 __火曜日__ |  My keyboard broken...
 __水曜日__ | __[Done](/src/record/Apr18.2020.md)__
 __木曜日__ | __[Done](/src/record/Apr18.2020.md)__
@@ -46,9 +50,9 @@ __土曜日__ | lll
 
 First Header | Second Header
 ------------ | -------------
-__日曜日__ | 
-__月曜日__ | 
-__火曜日__ | 
+__日曜日__ |
+__月曜日__ |
+__火曜日__ |
 __水曜日__ | practice for rehearsals
 __木曜日__ | practice for rehearsals
 __金曜日__ | rehearsaled
@@ -61,17 +65,17 @@ First Header | Second Header
 __日曜日__ | __[Done](/src/record/May.6.2020.md)__
 __月曜日__ | __[Done](/src/record/May.6.2020.md)__
 __火曜日__ | __[Done](/src/record/May.6.2020.md)__
-__水曜日__ | 
+__水曜日__ |
 __木曜日__ |
 __金曜日__ |
-__土曜日__ | 
+__土曜日__ |
 
 #### From May10.2020 to May16.2020
 
 First Header | Second Header
 ------------ | -------------
 __日曜日__ | __[Done](/src/record/May10.2020.md)__
-__月曜日__ | 
+__月曜日__ |
 __火曜日__ | __[Done](/src/record/May12.2020.md)__
 __水曜日__ | __[Done](/src/record/May13.2020.md)__
 __木曜日__ | __[Done](/src/record/May14.2020.md)__
@@ -87,6 +91,18 @@ __月曜日__ | __[Done](/src/records/May18.2020.md)__
 __火曜日__ | __[Done](/src/records/May19.2020.md)__
 __水曜日__ | __[Done](/src/records/May20.2020.md)__
 __木曜日__ | __[Done](/src/records/May21.2020.md)__
+__金曜日__ | __[Done](/src/records/May22.2020.md)__
+__土曜日__ |
+
+#### From May24.2020 to May30.2020
+
+First Header | Second Header
+------------ | -------------
+__日曜日__ | __[Done](/src/records/May24.2020.md)__
+__月曜日__ |
+__火曜日__ |
+__水曜日__ |
+__木曜日__ |
 __金曜日__ |
 __土曜日__ |
 
