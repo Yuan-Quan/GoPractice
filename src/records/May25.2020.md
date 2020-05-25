@@ -14,19 +14,19 @@ __Practice bAss for your band!!__
 __Practice Keyboard to maintain your finger skill.__
 
 - [ ] Hanon - Virtuoso Pianist in 60 Exercises
-- [ ] Play something for fun!!  
+- [x] Play something for fun!!  
 
 __Maintain your hearing, don't be DEAF!!__
 
 - [ ] Interval
-- [ ] Chord
-- [ ] Rhythm
+- [x] Chord
+- [x] Rhythm
 - [ ] Sight reading
-- [ ] Absolute pitch
+- [x] Absolute pitch
 - [ ] Note singing  
 
 __Just listen to some music you like.__
 
-- [ ] Have fun  
+- [x] Have fun  
 
 ## What did you do, Any midi or recording
