@@ -185,6 +185,7 @@ namespace GoPracticeCli
                 LinkAReport(date);
 
                 //auto select newly created report 
+                System.Console.WriteLine("will auto select newly generated one.");
                 Select(date);
             }
         }
