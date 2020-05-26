@@ -183,6 +183,9 @@ namespace GoPracticeCli
 
                 //creat corresponding link in the README
                 LinkAReport(date);
+
+                //auto select newly created report 
+                Select(date);
             }
         }
 
