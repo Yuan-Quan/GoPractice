@@ -102,6 +102,6 @@ __日曜日__ | __[Done](/src/records/May24.2020.md)__
 __月曜日__ | __[Done](/src/records/May25.2020.md)__
 __火曜日__ | __[Done](/src/records/May26.2020.md)__
 __水曜日__ | __[Done](/src/records/May27.2020.md)__
-__木曜日__ |
+__木曜日__ | __[Done](/src/records/May28.2020.md)__
 __金曜日__ |
 __土曜日__ |
