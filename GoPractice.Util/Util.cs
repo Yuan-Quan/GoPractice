@@ -565,7 +565,7 @@ namespace GoPractice.MyUtil
             }
             if (lineOfWkStart == -1)
             {
-                System.Console.WriteLine("No required date in README.md");
+                System.Console.WriteLine("\nNo required date in README.md");
                 return -1;
             }
 

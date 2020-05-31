@@ -339,6 +339,10 @@ namespace GoPracticeCli
                 case "attach":
                 case "ATTACH":
                 case "Attach":
+                    if (fileAtch.Contains("file://"))
+                    {
+                        fileAtch.Remove(0, 7);
+                    }
                     if (fileAtch == null)
                     {
                         Console.WriteLine();
