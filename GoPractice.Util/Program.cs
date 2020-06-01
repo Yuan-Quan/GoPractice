@@ -32,6 +32,15 @@ namespace GoPracticeCli
         //format of date time
         const string dataFmt = "{0,-30}{1}";
 
+        [Command(Name = "init",
+        Usage = "gpcli init",
+        Description = "initialize current directory for practice record",
+        ExtendedHelpText = "initialize current directory for practice record")]
+        public void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+
         [Command(Name = "new",
         Usage = "new [date]",
         Description = "creat a new report",
