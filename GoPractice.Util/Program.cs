@@ -38,7 +38,37 @@ namespace GoPracticeCli
         ExtendedHelpText = "initialize current directory for practice record")]
         public void Initialize()
         {
+            string path = Directory.GetCurrentDirectory();
+            var l = new List<string>();
+            l.Add("src/audio");
+            l.Add("src/images");
+            l.Add("src/midi");
+            l.Add("src/records");
+            l.Add("src/templates");
+            l.Add("src/video");
+
+            
+
             throw new NotImplementedException();
+
+            void CheckAndCreatADir(string fPath)
+            {
+                var pathStr = System.IO.Path.Combine(path,fPath);
+
+                // Check that the file doesn't already exist. If it doesn't exist, create
+                // the file and write integers 0 - 99 to it.
+                // DANGER: System.IO.File.Create will overwrite the file if it already exists.
+                // This could happen even with random file names, although it is unlikely.
+                if (!System.IO.Directory.Exists(pathStr))
+                {
+                    System.IO.Directory.CreateDirectory(pathStr);
+                }
+                else
+                {
+                    Console.WriteLine("Directory \"{0}\" already exists. Will skip that", pathStr);
+                    return;
+                }
+            }
         }
 
         [Command(Name = "new",
