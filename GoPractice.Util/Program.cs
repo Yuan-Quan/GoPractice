@@ -80,6 +80,8 @@ namespace GoPracticeCli
                 }
             }
 
+            MyUtil.GenerateAWeek(12,DateTime.Now);
+
             var preForegroundColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Initialization succeed!!");
