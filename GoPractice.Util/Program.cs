@@ -4,6 +4,7 @@ using CommandDotNet;
 using ConsoleTables;
 using GoPractice.MyUtil;
 using System.Collections.Generic;
+using System.Net;
 
 namespace GoPracticeCli
 {
@@ -12,10 +13,12 @@ namespace GoPracticeCli
         static void Startup()
         {
            //debug code here
+            var m = new MainEntry();
+            m.Initialize();
         }
         static int Main(string[] args)
         {
-            Startup();
+            //Startup();
             return new AppRunner<MainEntry>()
                 .UseDefaultMiddleware()
                 .Run(args);
@@ -31,6 +34,90 @@ namespace GoPracticeCli
 
         //format of date time
         const string dataFmt = "{0,-30}{1}";
+
+        [Command(Name = "init",
+        Usage = "gpcli init",
+        Description = "initialize current directory for practice record",
+        ExtendedHelpText = "initialize current directory for practice record")]
+        public void Initialize()
+        {
+            string path = Directory.GetCurrentDirectory();
+            
+            System.Console.WriteLine($"Initialize in {path}, is this right? ");
+            //throw new NotImplementedException();
+            System.Console.Write("yes[y] or no[n] > ");
+            var entry = Console.ReadLine();
+            if (!(entry == "y" || entry == "yes"))
+            {
+                System.Console.WriteLine("");
+                return;
+            }
+
+            var l = new List<string>();
+            l.Add("src");
+            l.Add("src/audio");
+            l.Add("src/images");
+            l.Add("src/midi");
+            l.Add("src/records");
+            l.Add("src/templates");
+            l.Add("src/video");
+
+            foreach (var item in l)
+            {
+                CheckAndCreatADir(item);
+            }
+
+            using (var client = new WebClient())
+            {
+                client.DownloadFile("http://example.com/file/song/a.mpeg", @$"{path}/README.md");
+                client.DownloadFile("http://example.com/file/song/a.mpeg", @$"{path}/templatesDailyReport.md");
+            }
+
+            var preForegroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Initialization succeed!!");
+            Console.ForegroundColor = preForegroundColor;
+            
+            System.Console.WriteLine("\nset current directory as working directory for gpcli?");
+            System.Console.Write("yes[y] to do it> ");
+            entry = Console.ReadLine();
+            if ((entry == "y" || entry == "yes"))
+            {
+                //System.Console.WriteLine("Will modify the configuration");
+                MyUtil.AddUpdateAppSettings("path", path);
+                Console.WriteLine();
+                preForegroundColor = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Configuration modified successfully!!");
+                Console.ForegroundColor = preForegroundColor;
+            }else
+            {
+                System.Console.WriteLine("You can set the working directory by \'gpcli config set path [path]\'");
+            }
+            
+            
+
+            //throw new NotImplementedException();
+
+            void CheckAndCreatADir(string fPath)
+            {
+                var pathStr = System.IO.Path.Combine(path,fPath);
+
+                // Check that the file doesn't already exist. If it doesn't exist, create
+                // the file and write integers 0 - 99 to it.
+                // DANGER: System.IO.File.Create will overwrite the file if it already exists.
+                // This could happen even with random file names, although it is unlikely.
+                if (!System.IO.Directory.Exists(pathStr))
+                {
+                    System.IO.Directory.CreateDirectory(pathStr);
+                }
+                else
+                {
+                    Console.WriteLine("Directory \"{0}\" already exists. Will skip that", pathStr);
+                    return;
+                }
+            }
+        }
 
         [Command(Name = "new",
         Usage = "new [date]",
