@@ -69,8 +69,15 @@ namespace GoPracticeCli
 
             using (var client = new WebClient())
             {
-                client.DownloadFile("http://example.com/file/song/a.mpeg", @$"{path}/README.md");
-                client.DownloadFile("http://example.com/file/song/a.mpeg", @$"{path}/templatesDailyReport.md");
+                if (!File.Exists(@$"{path}/README.md"))
+                {
+                    client.DownloadFile("https://raw.githubusercontent.com/Yuan-Quan/GoPractice/master/src/templates/README.md", @$"{path}/README.md");
+                }
+
+                if (!File.Exists(@$"{path}/sec/templates/DailyReport.md"))
+                {
+                    client.DownloadFile("https://raw.githubusercontent.com/Yuan-Quan/GoPractice/master/src/templates/DailyReport.md", @$"{path}/src/templates/DailyReport.md");
+                }
             }
 
             var preForegroundColor = Console.ForegroundColor;
