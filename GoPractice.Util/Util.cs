@@ -464,7 +464,7 @@ namespace GoPractice.MyUtil
                     continue;
                 }
             }
-            throw new Exception("No latest date found in README");
+            return new DateTime(1970,1,1);
         }
 
         public static DateTime GetFirstDate()
