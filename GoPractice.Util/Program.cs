@@ -44,11 +44,12 @@ namespace GoPracticeCli
             
             System.Console.WriteLine($"Initialize in {path}, is this right? ");
             //throw new NotImplementedException();
-            System.Console.Write("yes[y] or ");
+            System.Console.Write("yes[y] or no[n] > ");
             var entry = Console.ReadLine();
-            if (entry == "y" || entry == "yes")
+            if (!(entry == "y" || entry == "yes"))
             {
-                
+                System.Console.WriteLine("");
+                return;
             }
 
             var l = new List<string>();
@@ -65,8 +66,14 @@ namespace GoPracticeCli
                 CheckAndCreatADir(item);
             }
 
+            var preForegroundColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Initialization succeed!!");
+            Console.ForegroundColor = preForegroundColor;
+                    
+            
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
 
             void CheckAndCreatADir(string fPath)
             {
