@@ -12,10 +12,12 @@ namespace GoPracticeCli
         static void Startup()
         {
            //debug code here
+            var m = new MainEntry();
+            m.Initialize();
         }
         static int Main(string[] args)
         {
-            Startup();
+            //Startup();
             return new AppRunner<MainEntry>()
                 .UseDefaultMiddleware()
                 .Run(args);
@@ -39,7 +41,18 @@ namespace GoPracticeCli
         public void Initialize()
         {
             string path = Directory.GetCurrentDirectory();
+            
+            System.Console.WriteLine($"Initialize in {path}, is this right? ");
+            //throw new NotImplementedException();
+            System.Console.Write("yes[y] or ");
+            var entry = Console.ReadLine();
+            if (entry == "y" || entry == "yes")
+            {
+                
+            }
+
             var l = new List<string>();
+            l.Add("src");
             l.Add("src/audio");
             l.Add("src/images");
             l.Add("src/midi");
@@ -47,7 +60,11 @@ namespace GoPracticeCli
             l.Add("src/templates");
             l.Add("src/video");
 
-            
+            foreach (var item in l)
+            {
+                CheckAndCreatADir(item);
+            }
+
 
             throw new NotImplementedException();
 
