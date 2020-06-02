@@ -4,6 +4,7 @@ using CommandDotNet;
 using ConsoleTables;
 using GoPractice.MyUtil;
 using System.Collections.Generic;
+using System.Net;
 
 namespace GoPracticeCli
 {
@@ -66,11 +67,34 @@ namespace GoPracticeCli
                 CheckAndCreatADir(item);
             }
 
+            using (var client = new WebClient())
+            {
+                client.DownloadFile("http://example.com/file/song/a.mpeg", @$"{path}/README.md");
+                client.DownloadFile("http://example.com/file/song/a.mpeg", @$"{path}/templatesDailyReport.md");
+            }
+
             var preForegroundColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Initialization succeed!!");
             Console.ForegroundColor = preForegroundColor;
-                    
+            
+            System.Console.WriteLine("\nset current directory as working directory for gpcli?");
+            System.Console.Write("yes[y] to do it> ");
+            entry = Console.ReadLine();
+            if ((entry == "y" || entry == "yes"))
+            {
+                //System.Console.WriteLine("Will modify the configuration");
+                MyUtil.AddUpdateAppSettings("path", path);
+                Console.WriteLine();
+                preForegroundColor = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Configuration modified successfully!!");
+                Console.ForegroundColor = preForegroundColor;
+            }else
+            {
+                System.Console.WriteLine("You can set the working directory by \'gpcli config set path [path]\'");
+            }
+            
             
 
             //throw new NotImplementedException();
