@@ -135,7 +135,7 @@ __土曜日__ |
 First Header | Second Header
 ------------ | -------------
 __日曜日__ | __[Done](/src/records/June14.2020.md)__
-__月曜日__ |
+__月曜日__ | __[Done](/src/records/June15.2020.md)__
 __火曜日__ |
 __水曜日__ |
 __木曜日__ |
